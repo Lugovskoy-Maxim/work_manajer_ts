@@ -7,10 +7,17 @@
   min-height: calc(100vh - var(--header-height));
 }
 
+.author{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 14px;
+  color: var(--custom-colors-neutral-gray-600);
+}
 
 .workspace{
   width: 100%;
-  height: 100%;
+  height: calc(100vh - var(--header-height));
 }
 /* 
 .description {

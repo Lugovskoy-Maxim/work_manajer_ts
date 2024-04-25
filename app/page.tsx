@@ -1,5 +1,6 @@
 import { Header, Menu, Waybill } from "@/components";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
           <Waybill/>
         </div>
       </main>
+      <Link className={styles.author} href='https://github.com/Lugovskoy-Maxim' target="_blank">© Максим Луговской</Link>
     </>
   );
 }
