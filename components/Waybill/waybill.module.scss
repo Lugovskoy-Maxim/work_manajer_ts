@@ -1,17 +1,141 @@
-.waybill{
+.waybill {
   display: flex;
   flex-direction: column;
+  padding: 8px;
+  height: 100%;
+  justify-content: space-between;
+  color: var(--foreground-rgb);
 }
 
-.header{
+.header {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.experience {
+  display: flex;
+  justify-content: space-between;
 }
 
 .list {
   display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  height: 100%;
 }
 
+.title_page {
+  font-size: 32px;
+  padding: 8px;
+}
+
+.button {
+  display: flex;
+  color: white;
+  cursor: pointer;
+  width: 180px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: small;
+  background-color: rgb(17, 138, 252);
+  border: 1px solid white;
+  border-radius: 8px;
+}
+
+.table_title {
+  font-weight: 600;
+  font-size: medium;
+}
+
+.heading {
+  display: flex;
+  width: 100%;
+  height: 35px;
+  padding: 3px;
+  margin: 1px 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.name {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  max-width: 50%;
+  border-right: 1px solid var(--neutral-colors-500);
+}
+
+.date {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  max-width: 10%;
+  border-right: 1px solid var(--neutral-colors-500);
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  max-width: 10%;
+  border-right: 1px solid var(--neutral-colors-500);
+}
+
+.owner {
+  display: flex;
+  justify-content: center;
+  width: 15%;
+  max-width: 15%;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+}
+
+//
+
 .control {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  width: 7%;
+  max-width: 120px;
+  border-right: 1px solid var(--neutral-colors-500);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+.display {
+  font-size: 14px;
+}
+
+.displayConf {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.sort {
+  display: flex;
+}
+
+.display {
   display: flex;
 }
