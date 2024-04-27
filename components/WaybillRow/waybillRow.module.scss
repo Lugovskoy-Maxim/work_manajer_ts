@@ -1,12 +1,10 @@
 .item {
   display: flex;
   width: 100%;
-  height: 40px;
-  padding: 3px;
-  margin: 1px 0;
+  height: 45px;
+  padding: 0 10px;
   font-family: var(--font-mono);
-  border-bottom: 1px solid var(--tile-border);
-  border-top: 1px solid var(--tile-border);
+  border-bottom: 0.5px solid var(--neutral-colors-500);
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
@@ -21,24 +19,39 @@
   }
 }
 
-.control {
+.check {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
   align-items: center;
-  width: 7%;
-  max-width: 120px;
-  border-right: 1px solid var(--neutral-colors-500);
+  width: 20px;
+  max-width: 20px;
+  height: 100%;
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  gap: 10px;
+  align-items: center;
+  width: calc(7% - 20px);
+  max-width: 80px;
+  align-items: center;
 }
 
 .title {
   cursor: pointer;
   text-decoration: underline;
+  height: 100%;
   color: var(--custom-colors-blue-500);
   display: flex;
   justify-content: flex-start;
-  width: 50%;
-  border-right: 1px solid var(--neutral-colors-500);
+  width: 30%;
+  max-width: 30%;
+  padding-left: 15px;
+  align-items: center;
 
   p {
     color: var(--system-colors-blue-400);
@@ -55,12 +68,34 @@
   cursor: pointer;
 }
 
-.name {
+.address {
   display: flex;
   justify-content: flex-start;
-  width: 50%;
-  max-width: 50%;
-  border-right: 1px solid var(--neutral-colors-500);
+  width: 25%;
+  max-width: 25%;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--custom-colors-blue-500);
+
+  p {
+    color: var(--system-colors-blue-400);
+  }
+}
+
+.driver {
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  max-width: 10%;
+  cursor: pointer;
+  color: var(--custom-colors-blue-500);
+  text-decoration: underline;
+
+  p {
+    color: var(--system-colors-blue-400);
+  }
 }
 
 .date {
@@ -68,21 +103,25 @@
   justify-content: center;
   width: 10%;
   max-width: 10%;
-  border-right: 1px solid var(--neutral-colors-500);
+  height: 100%;
+  align-items: center;
 }
 
 .status {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 10%;
   max-width: 10%;
-  border-right: 1px solid var(--neutral-colors-500);
+  height: 100%;
 }
 
 .owner {
   display: flex;
+  align-items: center;
   justify-content: center;
   width: 15%;
   max-width: 15%;
+  height: 100%;
   cursor: pointer;
 }

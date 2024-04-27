@@ -35,6 +35,7 @@
     #00000010,
     #00000080
   );
+  --heading-row: #d4ccb650;
 
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
@@ -148,6 +149,8 @@
       #ffffff10,
       #ffffff80
     );
+
+    --heading-row: #58564e;
 
     --callout-rgb: 20, 20, 20;
     --callout-border-rgb: 108, 108, 108;

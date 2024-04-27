@@ -5,10 +5,13 @@ export type WaybillsNavigationType = {
 
 type NavigationLocale = {
   createWaybills: string;
-  print: string;
+  toExport: string;
+  control: string;
   name: string;
+  address: string;
   date: string;
   status: string;
+  driver: string;
   owner: string;
   sortBy: string;
   displayBy: string;
@@ -17,20 +20,26 @@ type NavigationLocale = {
 const WaybillsNavigation: WaybillsNavigationType = {
   ru: {
     createWaybills: "Создать путевой лист",
-    print: "На печать",
+    toExport: "Выгрузить",
+    control: 'Контроль',
     name: "Название",
+    address: 'Направление',
     date: "Дата",
     status: "Статус",
+    driver: 'Водитель',
     owner: "Автор",
     sortBy: 'Сортировать по',
     displayBy: "Отображать по",
   },
   en: {
     createWaybills: "Create new waybills",
-    print: "To print",
+    toExport: "Export",
+    control: 'Control',
     name: "Name",
+    address: 'Address',
     date: "Date",
     status: "Status",
+    driver: 'Driver',
     owner: "Owner",
     sortBy: 'Sort by',
     displayBy: "Display by",

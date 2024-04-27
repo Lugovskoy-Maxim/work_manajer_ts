@@ -1,12 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./waybill.module.scss";
-import Image from "next/image";
-import edit from "../../public/icons/edit.svg";
-import trash from "../../public/icons/trash.svg";
 import { Navigation, WaybillsNavigation } from "@/constants";
 import WaybillRow from "../WaybillRow/WaybillRow";
-import Link from "next/link";
 
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
@@ -23,7 +19,7 @@ export default function Waybill() {
             {WaybillsNavigation[currentLang].createWaybills}
           </button>
           <button type="button" className={styles.button}>
-            {WaybillsNavigation[currentLang].print}
+            {WaybillsNavigation[currentLang].toExport}
           </button>
         </div>
         <div className={styles.displayConf}>
@@ -32,9 +28,7 @@ export default function Waybill() {
               <p>{WaybillsNavigation[currentLang].sortBy}: </p>
             </label>
             <select name="sort" id="sort by">
-              <option value="byDate" selected>
-                Дате
-              </option>
+              <option value="byDate">Дате</option>
               <option value="byStatus">Статусу</option>
               <option value="byOwner">Автору</option>
             </select>
@@ -45,9 +39,7 @@ export default function Waybill() {
                 <p>{WaybillsNavigation[currentLang].displayBy}:</p>
               </label>
               <select name="sort" id="display by">
-                <option value="25" selected>
-                  25
-                </option>
+                <option value="25">25</option>
                 <option value="50">50</option>
                 {/* <option value="100">100</option> */}
               </select>
@@ -58,9 +50,14 @@ export default function Waybill() {
       </div>
 
       <div className={styles.heading}>
-        <div className={styles.control}>
+        <div className={styles.check}>
           <p className={styles.table_title}>
             <input type="checkbox" className={styles.checkbox}></input>
+          </p>
+        </div>
+        <div className={styles.control}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].control}
           </p>
         </div>
         <div className={styles.name}>
@@ -68,9 +65,19 @@ export default function Waybill() {
             {WaybillsNavigation[currentLang].name}
           </p>
         </div>
+        <div className={styles.address}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].address}
+          </p>
+        </div>
         <div className={styles.date}>
           <p className={styles.table_title}>
             {WaybillsNavigation[currentLang].date}
+          </p>
+        </div>
+        <div className={styles.driver}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].driver}
           </p>
         </div>
         <div className={styles.status}>
