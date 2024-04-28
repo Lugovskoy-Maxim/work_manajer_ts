@@ -1,5 +1,7 @@
 :root {
+  --background-color: #fbfbff;
   --max-width: 1100px;
+  --modal-desktop-width: 750px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
@@ -121,14 +123,14 @@
 	--custom-colors-neutral-gray-200: #f1f1f8;
 	--custom-colors-neutral-gray-100: #fbfbff;
 
-
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --background-color: #04020e;
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 70, 70, 70;
+    --background-end-rgb: 50, 50, 50;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
@@ -157,6 +159,11 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
+
+  body {
+    background: var(--background-color);
+    color: rgb(var(--background-start-rgb));
+  }
 }
 
 * {
@@ -174,12 +181,13 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+    background: var(--background-color);
 }
 
 a {

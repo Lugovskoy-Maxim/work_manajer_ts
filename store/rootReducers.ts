@@ -4,6 +4,7 @@ import organizationsReducer from './organizations/slice';
 import vehiclesReducer from './vehicles/slice';
 import usersReducer from './users/slice';
 import waybillsReducer from './waybills/slice';
+import modalContentReducer from './modal/slice';
 
 const rootReducer = combineReducers({
   drivers: driversReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   vehicles: vehiclesReducer,
   users: usersReducer,
   waybills: waybillsReducer,
+  modalContent: modalContentReducer,
 });
 
 export default rootReducer;

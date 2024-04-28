@@ -1,12 +1,19 @@
 'use client';
 
-import { Header, Menu, Waybill } from "@/components";
+import { Header, Menu, ModalWindow, Waybill } from "@/components";
 import styles from "./page.module.css";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import Link from "next/link";
+// import { useState } from "react";
 
 export default function Home() {
+  // const [isModalOpen, setIsModalOpen] = useState<true | false>(true)
+
+  // const toggleModal = () => {
+  //   setIsModalOpen(prevState => !prevState);
+  // };
+
   return (
     <>
       <Provider store={store}>
@@ -18,7 +25,9 @@ export default function Home() {
           </div>
         </main>
         <Link className={styles.author} href='https://github.com/Lugovskoy-Maxim' target="_blank">© Максим Луговской</Link>
+      <ModalWindow />
       </Provider>
+
     </>
   );
 }
