@@ -104,7 +104,7 @@ export default function Waybill() {
       </div>
       <ul className={styles.list}>
         {waybillData.waybills.map((waybill) => {
-          return <WaybillRow key={waybill.id} data={waybill} />;
+          return <WaybillRow key={waybill.id} waybill={waybill} />;
         })}
       </ul>
 

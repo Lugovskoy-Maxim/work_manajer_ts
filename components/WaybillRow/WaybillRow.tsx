@@ -8,6 +8,7 @@ import { WaybillDataProps } from "@/types/waybill";
 
 export default function WaybillRow(props: WaybillDataProps) {
   const dispatch = useDispatch();
+  const data = props.waybill;
   const handleOpenModal = (
     type:
       | ""
@@ -18,7 +19,7 @@ export default function WaybillRow(props: WaybillDataProps) {
       | "address"
       | "owner"
   ) => {
-    dispatch(openModal({ id: props.data.id, type: type }));
+    dispatch(openModal({ id: data.id, type: type }));
   };
 
   return (
@@ -47,25 +48,25 @@ export default function WaybillRow(props: WaybillDataProps) {
         </button>
       </div>
       <div className={styles.title} onClick={() => handleOpenModal("waybill")}>
-        <p>{`Путевой лист ТСПЛ-${props.data.waybill_number} от ${props.data.date}`}</p>
+        <p>{`Путевой лист ТСПЛ-${data.waybill_number} от ${data.date}`}</p>
       </div>
       <div
         className={styles.address}
         onClick={() => handleOpenModal("address")}
       >
-        <p>{props.data.address}</p>
+        <p>{data.address}</p>
       </div>
       <div className={styles.date}>
-        <p>{props.data.date}</p>
+        <p>{data.date}</p>
       </div>
       <div className={styles.driver} onClick={() => handleOpenModal("driver")}>
-        <p>{props.data.drivers.name}</p>
+        <p>{data.drivers.name}</p>
       </div>
       <div className={styles.status}>
-        <p>{props.data.status}</p>
+        <p>{data.status}</p>
       </div>
       <div className={styles.owner} onClick={() => handleOpenModal("owner")}>
-        <p>{props.data.owner}</p>
+        <p>{data.owner}</p>
       </div>
     </li>
   );

@@ -19,27 +19,27 @@ interface Vehicle {
 }
 
 export interface Waybill {
-  id: string; // Идентификатор 
-  waybill_number: string; // Название
-  address: string; // адрес
-  date: string; // дата
+  id: string; 
+  waybill_number: string; 
+  address: string; 
+  date: string; 
   status: string;
-  organizations: Organization; // организации
+  organizations: Organization; 
   vehicle: Vehicle;
-  drivers: Driver; // Водители
+  drivers: Driver; 
   owner: string;
 }
 
-export interface WaybillProps {
+export interface WaybillDataProps {
   waybill: {
-    id: string; // Идентификатор
-    waybill_number: string; // Название
-    address: string; // адрес
-    date: string; // дата
+    id: string; 
+    waybill_number: string; 
+    address: string; 
+    date: string; 
     status: string;
-    organizations: Organization; // организации
+    organizations: Organization;
     vehicle: Vehicle;
-    drivers: Driver; // Водители
+    drivers: Driver;
     owner: string;
   };
 }

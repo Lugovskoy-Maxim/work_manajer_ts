@@ -45,7 +45,7 @@ export default function ModalWindow() {
       className={`${styles.modal} ${isOpen ? styles.opened : styles.closed}`}
     >
       <div className={styles.wrapper} ref={modalRef}>
-        <h2>{type}</h2>
+        {/* <h2>{type}</h2> */}
         <button className={styles.close_button} onClick={handleCloseModal}>
           <Image
             src={close_icon}

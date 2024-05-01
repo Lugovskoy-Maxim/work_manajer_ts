@@ -1,25 +1,14 @@
 import { WaybillProps } from "@/types/waybill";
+import styles from './withWaybill.module.scss';
 
 export default function ModalWithWaybill(waybill: WaybillProps) {
   const data = waybill.waybill;
   return (
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title"></h5>
-        <button
-          type="button"
-          className="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+    <div className={styles.content}>
+      <div className={styles.header}>
+        <h5 className={styles.title}>{`Путевой лист ТСПЛ-${data.waybill_number} от ${data.date}`}</h5>
       </div>
-      <div className="modal-body">
-        <p>
-          <strong>ID:</strong> {data.id}
-        </p>
-        <p>
-          <strong>Номер путевого листа:</strong> {data.waybill_number}
-        </p>
+      <div className={styles.body}>
         <p>
           <strong>Адрес:</strong> {data.address}
         </p>
@@ -54,16 +43,16 @@ export default function ModalWithWaybill(waybill: WaybillProps) {
           <strong>Смена водителя:</strong> {data.drivers.working_shift}
         </p>
         <p>
-          <strong>Владелец:</strong> {data.owner}
+          <strong>Создал:</strong> {data.owner}
         </p>
       </div>
-      <div className="modal-footer">
-        <button
+      <div className={styles.footer}>
+      <button
           type="button"
-          className="btn btn-secondary"
+          className={styles.btn}
           data-bs-dismiss="modal"
         >
-          Отменить
+          На печать
         </button>
       </div>
     </div>
