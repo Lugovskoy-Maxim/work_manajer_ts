@@ -3,9 +3,20 @@ import React, { useState } from "react";
 import styles from "./waybill.module.scss";
 import { Navigation, WaybillsNavigation } from "@/constants";
 import WaybillRow from "../WaybillRow/WaybillRow";
+import mokeWaybill from "@/constants/mokeWaybill";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWaybillsSuccess } from "@/store/waybills/slice";
+import { RootState } from "@/store/store";
 
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
+  const dispatch = useDispatch();
+  dispatch(fetchWaybillsSuccess(mokeWaybill));
+
+  const waybillData = useSelector(
+    (state: RootState) => state.waybills
+  );
+
 
   return (
     <section className={styles.waybill}>
@@ -92,18 +103,9 @@ export default function Waybill() {
         </div>
       </div>
       <ul className={styles.list}>
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
-        <WaybillRow />
+        {waybillData.waybills.map((waybill) => {
+          return <WaybillRow key={waybill.id} data={waybill} />;
+        })}
       </ul>
 
       <div className={styles.footer}>

@@ -1,37 +1,47 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModalContentState {
   id: string;
-  type: 'waybill' | 'driver' | 'organization' | 'user' | 'address' | '';
-  isOpen: boolean; 
+  type:
+    | "waybill"
+    | "driver"
+    | "organization"
+    | "user"
+    | "address"
+    | "owner"
+    | "";
+  isOpen: boolean;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: ModalContentState = {
-  id: '',
-  type: '',
-  isOpen: false, 
+  id: "",
+  type: "",
+  isOpen: false,
   isLoading: false,
   error: null,
 };
 
 const ModalContentSlice = createSlice({
-  name: 'modalContent',
+  name: "modalContent",
   initialState,
   reducers: {
-    openModal(state, action: PayloadAction<{ id: string; type: ModalContentState['type'] }>) {
+    openModal(
+      state,
+      action: PayloadAction<{ id: string; type: ModalContentState["type"] }>
+    ) {
       const { id, type } = action.payload;
       state.id = id;
       state.type = type;
-      state.isOpen = true; 
+      state.isOpen = true;
       state.isLoading = true;
       state.error = null;
     },
     closeModal(state) {
-      state.id = '';
-      state.type = '';
-      state.isOpen = false; 
+      state.id = "";
+      state.type = "";
+      state.isOpen = false;
       state.isLoading = false;
       state.error = null;
     },
@@ -44,6 +54,7 @@ const ModalContentSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, setLoading, setError } = ModalContentSlice.actions;
+export const { openModal, closeModal, setLoading, setError } =
+  ModalContentSlice.actions;
 
 export default ModalContentSlice.reducer;

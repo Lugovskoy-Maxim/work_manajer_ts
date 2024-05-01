@@ -4,62 +4,68 @@ import edit from "../../public/icons/edit.svg";
 import trash from "../../public/icons/trash.svg";
 import { openModal } from "../../store/modal/slice";
 import { useDispatch, useSelector } from "react-redux";
+import { WaybillDataProps } from "@/types/waybill";
 
-interface dataProps {
-  id: string;
-  title: string;
-  address: string;
-  date: string;
-  driver: string;
-  status: string;
-  owner: string;
-}
-
-export default function WaybillRow() {
-const data: dataProps = {
-  id: '123',
-  title: 'Путевой лист ТСПЛ-33/24 от 05.04.2024',
-  address: 'Кустовая площадка 537 Приразломного м/р',
-  date: '08.04.2024',
-  driver: 'Иванов Иван',
-  status: 'Закрыт',
-  owner: 'Диспечер 387',
-}
-
+export default function WaybillRow(props: WaybillDataProps) {
   const dispatch = useDispatch();
-  const handleOpenWaybillModal = () => {
-    dispatch(openModal({ id: data.id, type: 'waybill'}));
+  const handleOpenModal = (
+    type:
+      | ""
+      | "waybill"
+      | "driver"
+      | "organization"
+      | "user"
+      | "address"
+      | "owner"
+  ) => {
+    dispatch(openModal({ id: props.data.id, type: type }));
   };
+
   return (
     <li className={styles.item}>
       <div className={styles.check}>
         <input type="checkbox" className={styles.checkbox}></input>
       </div>
       <div className={styles.control}>
-      <button type="button" className={styles.icon_button}>
-          <Image src={edit} alt={"Редактировать"} width={22} height={22} className={styles.icon}/>
+        <button type="button" className={styles.icon_button}>
+          <Image
+            src={edit}
+            alt={"Редактировать"}
+            width={22}
+            height={22}
+            className={styles.icon}
+          />
         </button>
         <button type="button" className={styles.icon_button}>
-          <Image src={trash} alt={"Удалить"} width={22} height={22} className={styles.icon}/>
+          <Image
+            src={trash}
+            alt={"Удалить"}
+            width={22}
+            height={22}
+            className={styles.icon}
+          />
         </button>
       </div>
-      <div className={styles.title} onClick={handleOpenWaybillModal}>
-        <p>Путевой лист ТСПЛ-33/24 от 05.04.2024</p>
+      <div className={styles.title} onClick={() => handleOpenModal("waybill")}>
+        <p>{`Путевой лист ТСПЛ-${props.data.waybill_number} от ${props.data.date}`}</p>
       </div>
-      <div className={styles.address}>
-        <p>Кустовая площадка 537 Приразломного м/р</p>
+      <div
+        className={styles.address}
+        onClick={() => handleOpenModal("address")}
+      >
+        <p>{props.data.address}</p>
       </div>
       <div className={styles.date}>
-        <p>08.04.2024</p>
+        <p>{props.data.date}</p>
       </div>
-      <div className={styles.driver}>
-        <p>Иванов Иван</p>
+      <div className={styles.driver} onClick={() => handleOpenModal("driver")}>
+        <p>{props.data.drivers.name}</p>
       </div>
       <div className={styles.status}>
-        <p>Закрыт</p>
+        <p>{props.data.status}</p>
       </div>
-      <div className={styles.owner}>
-        <p>Диспечер 387</p>
+      <div className={styles.owner} onClick={() => handleOpenModal("owner")}>
+        <p>{props.data.owner}</p>
       </div>
     </li>
   );

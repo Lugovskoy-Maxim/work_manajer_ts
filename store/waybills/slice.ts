@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface Driver {
   id: string;
   name: string;
-  working_shift: 1 | 2;
+  working_shift: number;
 }
 
 
@@ -12,7 +12,7 @@ interface Organization {
   name: string;
 }
 
-interface Waybill {
+interface Vehicle {
   id: string; 
   reg_number: string;
   type: string;
@@ -24,11 +24,11 @@ interface Waybill {
 interface Waybill {
   id: string; // Идентификатор 
   waybill_number: string; // Название
-  address: string; // тип автомобиля
-  date: string; // марка авто
+  address: string; // адрес
+  date: string; // дата
   status: string;
   organizations: Organization; // организации
-  Waybill: Waybill;
+  vehicle: Vehicle;
   drivers: Driver; // Водители
   owner: string;
 }
