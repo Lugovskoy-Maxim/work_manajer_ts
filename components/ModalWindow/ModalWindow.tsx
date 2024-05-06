@@ -20,25 +20,26 @@ export default function ModalWindow() {
   }, [dispatch]);
 
   useEffect(() => {
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    }
+
     function handleClickOutside(e: MouseEvent) {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         handleCloseModal();
       }
     }
-
+    document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
+      document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [handleCloseModal]);
 
-  
-  function modalContent () {
-    if (type == 'waybill') {
-      return <div></div>
-    }
-    
-  }
 
   return (
     <section

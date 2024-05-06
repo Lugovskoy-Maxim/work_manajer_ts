@@ -1,41 +1,25 @@
-interface Driver {
-  id: string;
-  name: string;
-  working_shift: number;
-}
+import { Driver } from "./driver";
+import { Organization } from "./organization";
+import { Vehicle } from "./vehicle";
 
-interface Organization {
+export type Waybill = {
   id: string;
-  name: string;
-}
-
-interface Vehicle {
-  id: string;
-  reg_number: string;
-  type: string;
-  brand: string;
-  body_value: number;
-  fuel: number;
-}
-
-export interface Waybill {
-  id: string; 
-  waybill_number: string; 
-  address: string; 
-  date: string; 
+  waybill_number: string;
+  address: string;
+  date: string;
   status: string;
-  organizations: Organization; 
+  organizations: Organization;
   vehicle: Vehicle;
-  drivers: Driver; 
+  drivers: Driver;
   owner: string;
 }
 
-export interface WaybillDataProps {
+export type WaybillDataProps = {
   waybill: {
-    id: string; 
-    waybill_number: string; 
-    address: string; 
-    date: string; 
+    id: string;
+    waybill_number: string;
+    address: string;
+    date: string;
     status: string;
     organizations: Organization;
     vehicle: Vehicle;

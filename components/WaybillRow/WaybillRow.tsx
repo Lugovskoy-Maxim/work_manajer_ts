@@ -33,7 +33,7 @@ export default function WaybillRow(props: WaybillDataProps) {
       </div>
       <div
         className={styles.address}
-        onClick={() => handleOpenModal("address")}
+        // onClick={() => handleOpenModal("address")}
       >
         <p>{data.address}</p>
       </div>

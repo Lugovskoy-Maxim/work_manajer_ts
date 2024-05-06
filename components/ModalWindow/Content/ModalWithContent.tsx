@@ -2,7 +2,9 @@ import { RootState } from "@/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ModalWithWaybill from "./Waybill/ModalWithWaybill";
+import ModalWithDriver from "./Driver/ModalWithDriver";
 import { Waybill} from "@/types/waybill";
+import { Driver } from "@/types/driver";
 
 export default function ModalWithContent() {
   const dispatch = useDispatch();
@@ -20,7 +22,11 @@ export default function ModalWithContent() {
     if (!data) return undefined; 
     return data.find(item => item.id === id);
   }
-
+  
+  function findDataDriverById(id: string, data: Driver[]) {
+    if (!data) return undefined;
+    return data.find(item => item.id === id);
+  }
   let content = null;
 
   switch (type) {
@@ -28,10 +34,10 @@ export default function ModalWithContent() {
       const waybill = findDataWaybillById(id, waybills);
       content = waybill ? <ModalWithWaybill waybill={waybill} /> : null;
       break;
-    // case 'driver':
-    //   const driver = findDataById(id, drivers);
-    //   content = driver ? <ModalWithDriver driver={driver} /> : null;
-    //   break;
+    case 'driver':
+      const driver = findDataDriverById(id, drivers);
+      content = driver ? <ModalWithDriver driver={driver} /> : null;
+      break;
     // case 'organization':
     //   const organization = findDataById(id, organizations);
     //   content = organization ? <ModalWithOrganization organization={organization} /> : null;
