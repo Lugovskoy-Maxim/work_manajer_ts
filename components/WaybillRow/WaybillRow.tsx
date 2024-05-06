@@ -4,7 +4,12 @@ import edit from "../../public/icons/edit.svg";
 import trash from "../../public/icons/trash.svg";
 import { openModal } from "../../store/modal/slice";
 import { useDispatch, useSelector } from "react-redux";
-import { WaybillDataProps } from "@/types/waybill";
+
+import { Waybill} from "@/types/waybill";
+
+type WaybillDataProps = {
+  waybill: Waybill;
+}
 
 export default function WaybillRow(props: WaybillDataProps) {
   const dispatch = useDispatch();
@@ -14,7 +19,7 @@ export default function WaybillRow(props: WaybillDataProps) {
       | ""
       | "waybill"
       | "driver"
-      | "organization"
+      | "organizations"
       | "user"
       | "address"
       | "owner"

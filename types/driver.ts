@@ -11,4 +11,5 @@ export type Driver = {
   organizations: Organization; 
   birthDay: string; 
   owner: string;
+  working_shift: number;
 }

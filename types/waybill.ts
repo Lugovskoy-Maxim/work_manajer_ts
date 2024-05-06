@@ -13,17 +13,3 @@ export type Waybill = {
   drivers: Driver;
   owner: string;
 }
-
-export type WaybillDataProps = {
-  waybill: {
-    id: string;
-    waybill_number: string;
-    address: string;
-    date: string;
-    status: string;
-    organizations: Organization;
-    vehicle: Vehicle;
-    drivers: Driver;
-    owner: string;
-  };
-}

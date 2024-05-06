@@ -11,6 +11,7 @@ export type Vehicle = {
   sts_date: string;
   sts_number: string;
   body_volume: number; // объем кузова
+  fuel: number;
   glonass_url: string;
   glonass_login: string;
   glonass_password: string;

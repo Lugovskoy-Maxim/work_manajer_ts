@@ -5,7 +5,7 @@ interface ModalContentState {
   type:
     | "waybill"
     | "driver"
-    | "organization"
+    | "organizations"
     | "user"
     | "address"
     | "owner"
