@@ -1,18 +1,18 @@
 "use client";
-import { Header, Menu, ModalWindow, Waybill } from "@/components";
-import styles from "./page.module.css";
+import { Header, Menu, ModalWindow } from "@/components";
+import styles from "./page.module.scss";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import Link from "next/link";
 
-export default function Home() {
+export default function CreateNewWaybillPage () {
   return (
     <Provider store={store}>
       <Header />
       <main className={styles.main}>
         <Menu />
         <div className={styles.workspace}>
-          <Waybill />
+          
         </div>
       </main>
       <Link
