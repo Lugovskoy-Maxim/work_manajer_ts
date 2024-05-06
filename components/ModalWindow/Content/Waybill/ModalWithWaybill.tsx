@@ -1,7 +1,7 @@
-import { WaybillProps } from "@/types/waybill";
+import { WaybillDataProps } from "@/types/waybill";
 import styles from './withWaybill.module.scss';
 
-export default function ModalWithWaybill(waybill: WaybillProps) {
+export default function ModalWithWaybill(waybill: WaybillDataProps) {
   const data = waybill.waybill;
   return (
     <div className={styles.content}>

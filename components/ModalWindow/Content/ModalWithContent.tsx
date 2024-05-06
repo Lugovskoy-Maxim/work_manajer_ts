@@ -1,7 +1,7 @@
 import { RootState } from "@/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalWithWaybill from "./ModalWithWaybill";
+import ModalWithWaybill from "./Waybill/ModalWithWaybill";
 import { Waybill} from "@/types/waybill";
 
 export default function ModalWithContent() {
