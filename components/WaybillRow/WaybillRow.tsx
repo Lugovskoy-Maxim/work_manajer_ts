@@ -27,6 +27,28 @@ export default function WaybillRow(props: WaybillDataProps) {
       <div className={styles.check}>
         <input type="checkbox" className={styles.checkbox}></input>
       </div>
+      
+      <div className={styles.title} onClick={() => handleOpenModal("waybill")}>
+        <p>{`Путевой лист ТСПЛ-${data.waybill_number} от ${data.date}`}</p>
+      </div>
+      <div
+        className={styles.address}
+        onClick={() => handleOpenModal("address")}
+      >
+        <p>{data.address}</p>
+      </div>
+      <div className={styles.date}>
+        <p>{data.date}</p>
+      </div>
+      <div className={styles.driver} onClick={() => handleOpenModal("driver")}>
+        <p>{data.drivers.name}</p>
+      </div>
+      <div className={`${styles.status} ${data.status == 'Открыт' ? styles.opened : ''}`}>
+        <p>{data.status}</p>
+      </div>
+      <div className={styles.owner} onClick={() => handleOpenModal("owner")}>
+        <p>{data.owner}</p>
+      </div>
       <div className={styles.control}>
         <button type="button" className={styles.icon_button}>
           <Image
@@ -46,27 +68,6 @@ export default function WaybillRow(props: WaybillDataProps) {
             className={styles.icon}
           />
         </button>
-      </div>
-      <div className={styles.title} onClick={() => handleOpenModal("waybill")}>
-        <p>{`Путевой лист ТСПЛ-${data.waybill_number} от ${data.date}`}</p>
-      </div>
-      <div
-        className={styles.address}
-        onClick={() => handleOpenModal("address")}
-      >
-        <p>{data.address}</p>
-      </div>
-      <div className={styles.date}>
-        <p>{data.date}</p>
-      </div>
-      <div className={styles.driver} onClick={() => handleOpenModal("driver")}>
-        <p>{data.drivers.name}</p>
-      </div>
-      <div className={styles.status}>
-        <p>{data.status}</p>
-      </div>
-      <div className={styles.owner} onClick={() => handleOpenModal("owner")}>
-        <p>{data.owner}</p>
       </div>
     </li>
   );

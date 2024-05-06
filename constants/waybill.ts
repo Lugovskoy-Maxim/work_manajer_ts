@@ -19,9 +19,9 @@ type NavigationLocale = {
 
 const WaybillsNavigation: WaybillsNavigationType = {
   ru: {
-    createWaybills: "Создать путевой лист",
-    toExport: "Выгрузить",
-    control: 'Контроль',
+    createWaybills: "Создать путевой лист +",
+    toExport: "Экспортировать",
+    control: 'Опции',
     name: "Название",
     address: 'Направление',
     date: "Дата",
@@ -32,7 +32,7 @@ const WaybillsNavigation: WaybillsNavigationType = {
     displayBy: "Отображать по",
   },
   en: {
-    createWaybills: "Create new waybills",
+    createWaybills: "Create new waybills +",
     toExport: "Export",
     control: 'Control',
     name: "Name",

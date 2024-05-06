@@ -12,7 +12,7 @@
 
   p {
     font-family: var(--font-mono);
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
     line-height: 157%;
     color: var(--foreground-rgb);
@@ -41,9 +41,8 @@
 
 .title {
   cursor: pointer;
-  text-decoration: underline;
   height: 100%;
-  color: var(--custom-colors-blue-400);
+  // color: var(--custom-colors-blue-400);
   display: flex;
   justify-content: flex-start;
   width: 30%;
@@ -51,24 +50,25 @@
   padding-left: 15px;
   align-items: center;
 
-  p {
-    color: var(--system-colors-blue-300);
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
   }
 }
 
 .address {
   display: flex;
   justify-content: flex-start;
-  width: 25%;
-  max-width: 25%;
+  width: 15%;
+  max-width: 15%;
   height: 100%;
   align-items: center;
   cursor: pointer;
-  text-decoration: underline;
-  color: var(--custom-colors-blue-400);
 
-  p {
-    color: var(--system-colors-blue-300);
+
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
   }
 }
 
@@ -78,11 +78,10 @@
   width: 10%;
   max-width: 10%;
   cursor: pointer;
-  color: var(--custom-colors-blue-400);
-  text-decoration: underline;
 
-  p {
-    color: var(--system-colors-blue-300);
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
   }
 }
 
@@ -127,6 +126,13 @@
   width: 18px;
   height: 18px;
   cursor: pointer;
+}
+
+.opened {
+  border-radius: 15px;
+  height: 20px;
+  color: rgb(150, 97, 34);
+  background-color: bisque;
 }
 
 @media (prefers-color-scheme: dark) {

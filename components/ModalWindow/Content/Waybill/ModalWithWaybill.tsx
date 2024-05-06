@@ -52,6 +52,13 @@ export default function ModalWithWaybill(waybill: WaybillDataProps) {
           className={styles.btn}
           data-bs-dismiss="modal"
         >
+          Редактировать
+        </button>
+      <button
+          type="button"
+          className={styles.btn}
+          data-bs-dismiss="modal"
+        >
           На печать
         </button>
       </div>
