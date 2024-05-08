@@ -5,7 +5,7 @@ export type Organization = {
   id: string; // Идентификатор
   name: string; // Название
   inn: string; // ИНН
-  drivers: Driver[]; // Водители
-  vehicles: Vehicle[]; // Техника
+  drivers: string[]; // Водители
+  vehicles: string[]; // Техника
   owner: string; // Владелец
 };

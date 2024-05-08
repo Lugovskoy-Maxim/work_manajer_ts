@@ -1,5 +1,3 @@
-import { Organization } from "./organization";
-
 export type Driver = {
   id: string; 
   name: string; 
@@ -8,7 +6,7 @@ export type Driver = {
   middleName: string; 
   licenseNumber: string; 
   licenseDate: string; 
-  organizations: Organization; 
+  organizations: string; 
   birthDay: string; 
   owner: string;
   working_shift: number;

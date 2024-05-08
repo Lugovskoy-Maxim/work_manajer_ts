@@ -8,8 +8,8 @@ export type Waybill = {
   address: string;
   date: string;
   status: string;
-  organizations: Organization;
-  vehicle: Vehicle;
-  drivers: Driver;
+  organizations: string;
+  vehicle: string;
+  drivers: string;
   owner: string;
 }

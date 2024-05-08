@@ -17,11 +17,26 @@ import sort_by from "../../public/icons/sort_by.svg";
 import settings from "../../public/icons/settings.svg";
 
 import Image from "next/image";
+import { fetchDriversSuccess } from "@/store/drivers/slice";
+import mokeDrivers from "@/constants/mokeDrivers";
+import { mokeVehicles } from "@/constants/mokeVehicles";
+import { fetchVehiclesSuccess } from "@/store/vehicles/slice";
+import { fetchOrganizationsSuccess } from "@/store/organizations/slice";
+import { mokeOrganizations } from "@/constants/moleOrganizations";
 
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
   const dispatch = useDispatch();
+
   dispatch(fetchWaybillsSuccess(mokeWaybill));
+  dispatch(fetchDriversSuccess(mokeDrivers));
+  dispatch(fetchVehiclesSuccess(mokeVehicles));
+  dispatch(fetchOrganizationsSuccess(mokeOrganizations));
+
+  // users
+  // organizations
+  // address
+  
 
   const waybillData = useSelector((state: RootState) => state.waybills);
 
@@ -187,11 +202,15 @@ export default function Waybill() {
           </p>
         </div>
       </div>
+
+
       <ul className={styles.list}>
         {waybillData.waybills.map((waybill) => {
           return <WaybillRow key={waybill.id} waybill={waybill} />;
         })}
       </ul>
+
+      
 
       <div className={styles.footer}>
         <div className={styles.pagination}>

@@ -6,6 +6,8 @@ import { openModal } from "../../store/modal/slice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Waybill} from "@/types/waybill";
+import { RootState } from "@/store/store";
+import { Driver } from "@/types/driver";
 
 type WaybillDataProps = {
   waybill: Waybill;
@@ -13,6 +15,7 @@ type WaybillDataProps = {
 
 export default function WaybillRow(props: WaybillDataProps) {
   const dispatch = useDispatch();
+  const drivers = useSelector((state: RootState) => state.drivers.drivers);
   const data = props.waybill;
   const handleOpenModal = (
     type:
@@ -26,6 +29,12 @@ export default function WaybillRow(props: WaybillDataProps) {
   ) => {
     dispatch(openModal({ id: data.id, type: type }));
   };
+
+  const findDriverById = (driverId: string): Driver | undefined => {
+    return drivers.find((driver) => driver.id === driverId);
+  };
+  const driver = findDriverById(data.drivers);
+  const driverName =  driver ? `${driver.firstName} ${driver.lastName}` : "Водитель не найден";
 
   return (
     <li className={styles.item}>
@@ -46,7 +55,7 @@ export default function WaybillRow(props: WaybillDataProps) {
         <p>{data.date}</p>
       </div>
       <div className={styles.driver} onClick={() => handleOpenModal("driver")}>
-        <p>{data.drivers.name}</p>
+        <p>{driverName}</p>
       </div>
       <div className={`${styles.status} ${data.status == 'Открыт' ? styles.opened : ''}`}>
         <p>{data.status}</p>
