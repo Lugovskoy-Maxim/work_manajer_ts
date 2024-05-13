@@ -23,6 +23,10 @@ import { mokeVehicles } from "@/constants/mokeVehicles";
 import { fetchVehiclesSuccess } from "@/store/vehicles/slice";
 import { fetchOrganizationsSuccess } from "@/store/organizations/slice";
 import { mokeOrganizations } from "@/constants/moleOrganizations";
+import { fetchAddressSuccess } from "@/store/address/slice";
+import mokeAddress from "@/constants/mokeAddress";
+import mokeUsers from "@/constants/mokeUsers";
+import { fetchUsersSuccess } from "@/store/users/slice";
 
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
@@ -32,15 +36,15 @@ export default function Waybill() {
   dispatch(fetchDriversSuccess(mokeDrivers));
   dispatch(fetchVehiclesSuccess(mokeVehicles));
   dispatch(fetchOrganizationsSuccess(mokeOrganizations));
+  dispatch(fetchAddressSuccess(mokeAddress));
+  dispatch(fetchUsersSuccess(mokeUsers));
 
   // users
   // organizations
-  // address
-  
 
   const waybillData = useSelector((state: RootState) => state.waybills);
 
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 25;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -48,7 +52,6 @@ export default function Waybill() {
     indexOfFirstItem,
     indexOfLastItem
   );
-
 
   const goToPrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -92,18 +95,10 @@ export default function Waybill() {
               </select>
             </div>
             <div>
-              {/* <div className={styles.display}>
-                <label htmlFor="display by">
-                  <p>{WaybillsNavigation[currentLang].displayBy}:</p>
-                </label>
-                <select name="sort" id="display by">
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                </select>
-              </div> */}
+
             </div>
           </div>
-          {/* <p className={styles.display}>Отображено 10 из 125</p> */}
+
           <div className={styles.right_block}>
             <div className={styles.hide_closed}>
               <input type="checkbox" className={styles.checkbox}></input>
@@ -203,14 +198,11 @@ export default function Waybill() {
         </div>
       </div>
 
-
       <ul className={styles.list}>
         {waybillData.waybills.map((waybill) => {
           return <WaybillRow key={waybill.id} waybill={waybill} />;
         })}
       </ul>
-
-      
 
       <div className={styles.footer}>
         <div className={styles.pagination}>

@@ -7,14 +7,14 @@ export type Vehicle = {
   type: string; // тип автомобиля
   brand: string; // марка авто
   reg_number: string;
-  organizations: Organization; // организации
-  sts_date: string;
-  sts_number: string;
-  body_volume: number; // объем кузова
-  fuel: number;
-  glonass_url: string;
-  glonass_login: string;
-  glonass_password: string;
-  drivers: Driver; // Водители
+  organizations?: string; // организации
+  sts_date?: string;
+  sts_number?: string;
+  body_volume?: number; // объем кузова
+  fuel?: number;
+  glonass_url?: string;
+  glonass_login?: string;
+  glonass_password?: string;
+  drivers?: string; // Водители
   owner: string;
 }
