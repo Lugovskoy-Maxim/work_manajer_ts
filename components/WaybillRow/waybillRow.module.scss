@@ -10,6 +10,10 @@
   gap: 8px;
   background-color: var(--secondary-glow);
 
+  &:hover {
+  background-color: var(--neutral-colors-500);
+  }
+
   p {
     font-family: var(--font-mono);
     font-weight: 300;
@@ -45,8 +49,8 @@
   // color: var(--custom-colors-blue-400);
   display: flex;
   justify-content: flex-start;
-  width: 30%;
-  max-width: 30%;
+  width: 25%;
+  max-width: 25%;
   padding-left: 15px;
   align-items: center;
 
@@ -63,13 +67,29 @@
   max-width: 15%;
   height: 100%;
   align-items: center;
-  // cursor: pointer;
+  cursor: pointer;
 
 
-  // p:hover {
-  //   color: var(--system-colors-blue-400);
-  //   text-decoration: underline;
-  // }
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
+  }
+}
+
+.vehicle {
+  display: flex;
+  justify-content: flex-start;
+  width: 10%;
+  max-width: 10%;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+
+
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
+  }
 }
 
 .driver {
@@ -111,6 +131,11 @@
   max-width: 15%;
   height: 100%;
   cursor: pointer;
+
+  p:hover {
+    color: var(--system-colors-blue-400);
+    text-decoration: underline;
+  }
 }
 
 .icon_button {
@@ -133,6 +158,16 @@
   height: 20px;
   color: rgb(150, 97, 34);
   background-color: bisque;
+}
+
+.not_found {
+  color: rgb(194, 121, 121);
+  cursor: default;
+
+  p:hover {
+    color:  rgb(194, 121, 121);
+    text-decoration: none;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

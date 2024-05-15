@@ -130,6 +130,17 @@ export default function Waybill() {
             {WaybillsNavigation[currentLang].name}
           </p>
         </div>
+        <div className={styles.vehicle}>
+          <Image
+            src={address}
+            alt={WaybillsNavigation[currentLang].vehicle}
+            width={18}
+            height={18}
+          />
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].vehicle}
+          </p>
+        </div>
         <div className={styles.address}>
           <Image
             src={address}

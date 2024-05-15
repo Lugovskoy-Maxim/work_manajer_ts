@@ -48,3 +48,18 @@
     background-color: #0056b3;
   }
 }
+
+
+.modal_footer {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  gap: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    color: rgb(155, 155, 155);
+    font-size: small;
+  }
+}

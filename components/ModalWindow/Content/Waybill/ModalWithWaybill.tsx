@@ -19,15 +19,15 @@ const ModalWithWaybill: React.FC<WaybillDataProps> = ({ waybill }) => {
     return address.find((address) => address.id === addressId);
   };
   const addressForHTML = findAddressById(waybill.address);
-  const addressName = addressForHTML
-    ? `${
-        addressForHTML.name
-          ? addressForHTML.name
-          : `${addressForHTML.street} ${
-              addressForHTML.buildingNumber ? addressForHTML.buildingNumber : ""
-            }`
-      }`
-    : "Адрес не найден";
+  // const addressName = addressForHTML
+  //   ? `${
+  //       addressForHTML.name
+  //         ? addressForHTML.name
+  //         : `${addressForHTML.street} ${
+  //             addressForHTML.buildingNumber ? addressForHTML.buildingNumber : ""
+  //           }`
+  //     }`
+  //   : "Адрес не найден";
   //
 
   // DRIVER
@@ -134,10 +134,29 @@ const ModalWithWaybill: React.FC<WaybillDataProps> = ({ waybill }) => {
           <strong>Объем кузова:</strong>{" "}
           {vehicle ? vehicle.body_volume : "Транспорт не найден"}
         </p>
-        <p>
-          <strong>Топливо:</strong>{" "}
-          {vehicle ? vehicle.fuel : "Транспорт не найден"}
-        </p>
+        {waybill.fuel && (
+          <p>
+            <strong>Топливо:</strong> {waybill.fuel}
+          </p>
+        )}
+        {waybill.speedometer_readings_start && (
+          <p>
+            <strong>Показания спидометра (начало):</strong>{" "}
+            {waybill.speedometer_readings_start}
+          </p>
+        )}
+        {waybill.speedometer_readings_end && (
+          <p>
+            <strong>Показания спидометра (конец):</strong>{" "}
+            {waybill.speedometer_readings_end}
+          </p>
+        )}
+        {waybill.flights && (
+          <p>
+            <strong>Рейсы:</strong>{" "}
+            {waybill.flights}
+          </p>
+        )}
         <p>
           <strong>Водитель:</strong>{" "}
           {driver
@@ -146,10 +165,9 @@ const ModalWithWaybill: React.FC<WaybillDataProps> = ({ waybill }) => {
         </p>
         <p>
           <strong>Смена водителя:</strong>{" "}
-          {waybill.working_shift ? waybill.working_shift : "Ошибка. Идентификатор не найден"}
-        </p>
-        <p>
-          <strong>Создал:</strong> {userName}
+          {waybill.working_shift
+            ? waybill.working_shift
+            : "Ошибка. Идентификатор не найден"}
         </p>
       </div>
       <div className={styles.footer}>
@@ -159,6 +177,15 @@ const ModalWithWaybill: React.FC<WaybillDataProps> = ({ waybill }) => {
         <button type="button" className={styles.btn} data-bs-dismiss="modal">
           На печать
         </button>
+      </div>
+      <div className={styles.modal_footer}>
+        <p>
+          <strong>Автор:</strong> {userName}
+        </p>
+
+        <p>
+          <strong>ID:</strong> {waybill.id}
+        </p>
       </div>
     </div>
   );

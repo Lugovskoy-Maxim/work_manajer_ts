@@ -12,6 +12,7 @@ type NavigationLocale = {
   date: string;
   status: string;
   driver: string;
+  vehicle: string;
   owner: string;
   sortBy: string;
   displayBy: string;
@@ -28,6 +29,7 @@ const WaybillsNavigation: WaybillsNavigationType = {
     status: "Статус",
     driver: 'Водитель',
     owner: "Автор",
+    vehicle: 'Техника',
     sortBy: 'Сортировать по',
     displayBy: "Отображать по",
   },
@@ -41,6 +43,7 @@ const WaybillsNavigation: WaybillsNavigationType = {
     status: "Status",
     driver: 'Driver',
     owner: "Owner",
+    vehicle: 'Vehicle',
     sortBy: 'Sort by',
     displayBy: "Display by",
   },

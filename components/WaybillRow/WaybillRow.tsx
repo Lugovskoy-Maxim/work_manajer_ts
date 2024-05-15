@@ -10,6 +10,7 @@ import { RootState } from "@/store/store";
 import { Driver } from "@/types/driver";
 import { Address } from "@/types/address";
 import { User } from "@/types/user";
+import { Vehicle } from "@/types/vehicle";
 
 type WaybillDataProps = {
   waybill: Waybill;
@@ -23,6 +24,7 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
     type:
       | ""
       | "waybill"
+      | "vehicle"
       | "driver"
       | "organizations"
       | "user"
@@ -71,6 +73,17 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
     : "Пользователь не найден";
   //
 
+    // OWNER
+    const vehicles = useSelector((state: RootState) => state.vehicles.vehicles);
+    const findVehicleById = (vehicleId: string): Vehicle | undefined => {
+      return vehicles.find((vehicle) => vehicle.id === vehicleId);
+    };
+    const vehicle = findVehicleById(data.vehicle);
+    // const userName = user
+    //   ? `${user.firstName} ${user.lastName}`
+    //   : "Пользователь не найден";
+    //
+
   return (
     <li className={styles.item}>
       <div className={styles.check}>
@@ -83,9 +96,19 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
       >
         <p>{`Путевой лист ТСПЛ-${data.waybill_number} от ${data.date}`}</p>
       </div>
+
+
       <div
-        className={styles.address}
-        // onClick={() => handleOpenModal("address")}
+        className={vehicle ? `${styles.vehicle}` : `${styles.vehicle} ${styles.not_found}`}
+        onClick={(f) => {vehicle ?  handleOpenModal(data.vehicle, "vehicle") : (f) }}
+      >
+        <p>{vehicle? vehicle.reg_number : 'X 000 XX 000'}</p>
+      </div>
+      
+      
+      <div
+        className={addressForHTML ? `${styles.address}` : `${styles.address} ${styles.not_found}`}
+        onClick={(f) => {addressForHTML ?  handleOpenModal(data.address, "address") : (f) }}
       >
         <p>{addressName}</p>
       </div>
@@ -93,8 +116,8 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
         <p>{data.date}</p>
       </div>
       <div
-        className={styles.driver}
-        onClick={() => handleOpenModal(data.drivers, "driver")}
+        className={driver ? `${styles.driver}` : `${styles.driver} ${styles.not_found}`}
+        onClick={(f) => {driver ?  handleOpenModal(data.drivers, "driver") : (f) }}
       >
         <p>{driverName}</p>
       </div>
@@ -106,8 +129,8 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
         <p>{data.status}</p>
       </div>
       <div
-        className={styles.owner}
-        onClick={() => handleOpenModal(data.owner, "owner")}
+        className={user ? `${styles.owner}` : `${styles.owner} ${styles.not_found}`}
+        onClick={(f) => {user ? handleOpenModal(data.owner, "owner") : (f) }}
       >
         <p>{userName}</p>
       </div>

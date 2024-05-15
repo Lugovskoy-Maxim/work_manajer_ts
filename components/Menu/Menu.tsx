@@ -2,28 +2,54 @@
 import { Navigation } from "@/constants";
 import styles from "./menu.module.scss";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
+  const pathname = usePathname();
 
   return (
     <section className={styles.menu}>
       <div className={styles.column}>
         <ul className={styles.list}>
-          <li className={`${styles.item} ${styles.active}`}>
-            {Navigation[currentLang].waybills}
+          <li
+            className={`${styles.item} ${
+              pathname == "/waybills" || "/" ? styles.active : ""
+            }`}
+          >
+            <Link href={"/waybills"}>{Navigation[currentLang].waybills}</Link>
           </li>
-          <li className={styles.item}>{Navigation[currentLang].summary}</li>
-          <li className={styles.item}>{Navigation[currentLang].vehicles}</li>
-          <li className={styles.item}>{Navigation[currentLang].drivers}</li>
           <li className={styles.item}>
-            {Navigation[currentLang].organizations}
+            <Link href={"/waybills"}>{Navigation[currentLang].summary}</Link>
           </li>
-          <li className={styles.item}>{Navigation[currentLang].address}</li>
-          <li className={styles.item}>{Navigation[currentLang].staff}</li>
+          <li className={styles.item}>
+            <Link href={"/vehicles"}>{Navigation[currentLang].vehicles}</Link>
+          </li>
+          <li className={styles.item}>
+            <Link href={"/drivers"}>{Navigation[currentLang].drivers}</Link>
+          </li>
+          <li className={styles.item}>
+            <Link href={"/organizations"}>
+              {Navigation[currentLang].organizations}
+            </Link>
+          </li>
+          <li className={styles.item}>
+            {" "}
+            <Link href={"/address"}>{Navigation[currentLang].address}</Link>
+          </li>
+          <li className={styles.item}>
+            {" "}
+            <Link href={"/organistaffzations"}>
+              {Navigation[currentLang].staff}
+            </Link>
+          </li>
         </ul>
-      </div>  
-      <div className={styles.user}>{Navigation[currentLang].profile}</div>
+      </div>
+      <div className={styles.user}>
+        {" "}
+        <Link href={"/profile"}>{Navigation[currentLang].profile}</Link>
+      </div>
     </section>
   );
 }

@@ -4,7 +4,7 @@ export const mokeVehicles = [
     name: "Грузовик Volvo FH16",
     type: "грузовик",
     brand: "Volvo",
-    reg_number: "A123BC",
+    reg_number: "A 123 BC 228",
     organizations: "1234567812345678",
     sts_date: "2022-01-01",
     sts_number: "ST123456",

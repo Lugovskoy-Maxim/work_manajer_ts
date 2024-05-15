@@ -9,6 +9,7 @@ import { Address } from "@/types/address";
 import { User } from "@/types/user";
 import { Organization } from "@/types/organization";
 import ModalWithUser from "./User/ModalWithUser";
+import ModalWithAddress from "./Address/ModalWithAddres";
 
 export default function ModalWithContent() {
   const dispatch = useDispatch();
@@ -55,10 +56,14 @@ export default function ModalWithContent() {
       const driver = findDataDriverById(id);
       content = driver ? <ModalWithDriver driver={driver} /> : null;
       break;
-    case 'user':
+    case 'owner':
       const user = findDataOwnerById(id);
       content = user ? <ModalWithUser user={user} /> : null;
       break;
+    case 'address':
+        const address = findDataAddressById(id);
+        content = address ? <ModalWithAddress address={address} /> : null;
+        break;
     // case 'organization':
     //   const organization = findDataOrganizationById(id);
     //   content = driver ? <ModalWithDriver driver={driver} /> : null;
