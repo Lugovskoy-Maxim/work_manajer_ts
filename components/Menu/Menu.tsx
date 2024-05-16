@@ -40,7 +40,7 @@ export default function Header() {
           </li>
           <li className={styles.item}>
             {" "}
-            <Link href={"/organistaffzations"}>
+            <Link href={"/staff"}>
               {Navigation[currentLang].staff}
             </Link>
           </li>
