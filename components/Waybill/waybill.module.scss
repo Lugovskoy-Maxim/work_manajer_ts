@@ -68,8 +68,8 @@
   padding: 8px 18px;
   align-items: center;
   gap: 8px;
-  border-radius: 10px;
-  background-color: var(--heading-row);
+  backdrop-filter: blur(8px);
+  background: rgba(240, 243, 248, 0.8);
 }
 
 .name,
@@ -222,7 +222,7 @@
   flex-shrink: 0;
   width: 100%;
   height: 50px;
-  background-color: var(--heading-row);
+  background: rgba(240, 243, 248, 0.8);
   align-items: center;
   justify-content: center;
   flex-direction: column;
