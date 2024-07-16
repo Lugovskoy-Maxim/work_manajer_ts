@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Header() {
+export default function Menu() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
   const pathname = usePathname();
 
@@ -35,19 +35,16 @@ export default function Header() {
             </Link>
           </li>
           <li className={styles.item}>
-            {" "}
             <Link href={"/address"}>{Navigation[currentLang].address}</Link>
           </li>
           <li className={styles.item}>
-            {" "}
-            <Link href={"/organistaffzations"}>
+            <Link href={"/staff"}>
               {Navigation[currentLang].staff}
             </Link>
           </li>
         </ul>
       </div>
       <div className={styles.user}>
-        {" "}
         <Link href={"/profile"}>{Navigation[currentLang].profile}</Link>
       </div>
     </section>

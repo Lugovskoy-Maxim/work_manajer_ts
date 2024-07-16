@@ -4,13 +4,15 @@ import styles from "./page.module.css";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import Link from "next/link";
+import GlobalMenu from "@/components/GlobalMenu/GlobalMenu";
 
 export default function Home() {
   return (
     <Provider store={store}>
-      <Header />
+      <GlobalMenu/>
       <main className={styles.main}>
-        <Menu />
+      <Header />
+        {/* <Menu /> */}
         <div className={styles.workspace}>
           <Waybill />
         </div>

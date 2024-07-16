@@ -1,25 +1,23 @@
 .waybill {
   display: flex;
   flex-direction: column;
-  // height: 100%;
   height: calc(100vh - 60px);
   justify-content: space-between;
   color: var(--foreground-rgb);
   z-index: 3;
+  flex-shrink: 1;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  // padding-bottom: 10px;
-  padding: 8px;
+  gap: 15px;
+  padding: 15px;
 }
 
 .experience {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
 }
 
 .list {
@@ -30,27 +28,31 @@
   padding: 8px;
   flex-direction: column;
   list-style-type: none;
-  // height: 100%;
 }
 
 .title_page {
-  font-size: 32px;
-  padding: 8px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: var(--gray-800);
 }
 
 .button {
-  display: flex;
-  color: white;
+  border-radius: 6px;
+  width: 207px;
+  height: 32px;
+  box-shadow: 0 0 0 1px var(--indigo-500), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  background: var(--indigo-500);
+  border: none;
   cursor: pointer;
-  width: 180px;
-  height: 30px;
-  justify-content: center;
-  align-items: center;
+
+  font-family: var(--font-family);
   font-weight: 500;
-  font-size: small;
-  background-color: #4763e4;
-  border: 1px solid rgb(238, 238, 238);
-  border-radius: 10px;
+  font-size: 14px;
+  line-height: 143%;
+  letter-spacing: 0.02em;
+  color: var(--white);
 }
 
 .table_title {
@@ -62,92 +64,94 @@
 .heading {
   display: flex;
   width: 100%;
-  height: 45px;
-  padding: 8px;
-  padding-left: 18px;
-  // margin: 1px 0;
+  height: 34px;
+  padding: 8px 18px;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
-  border-radius: 10px;
-  background-color: var(--heading-row);
+  backdrop-filter: blur(8px);
+  background: rgba(247, 249, 252, 0.8);
 }
 
-.name {
+.name,
+.address,
+.flight,
+.vehicle,
+.driver,
+.date,
+.status,
+.owner {
   display: flex;
   justify-content: flex-start;
   gap: 5px;
-  width: 25%;
-  max-width: 25%;
   height: 100%;
   align-items: center;
+}
+
+.name,
+.address,
+.flight,
+.owner {
+  width: 15%;
+  max-width: 15%;
   padding-left: 15px;
 }
 
-.address {
-  display: flex;
-  justify-content: flex-start;
-  gap: 5px;
-  width: 15%;
-  max-width: 15%;
-  height: 100%;
-  align-items: center;
-}
-
-
-.vehicle {
-  display: flex;
-  justify-content: flex-start;
-  width: 10%;
-  max-width: 10%;
-  height: 100%;
-  align-items: center;
-}
-
-.driver {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  width: 10%;
-  max-width: 10%;
-}
-
-.date {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-
-  width: 10%;
-  max-width: 10%;
-}
-
+.vehicle,
+.driver,
+.date,
 .status {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
   width: 10%;
   max-width: 10%;
 }
 
-.owner {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  width: 15%;
-  max-width: 15%;
+.heading_title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--gray-500);
 }
 
 .pagination {
   display: flex;
+  gap: 10px;
 }
 
 .check {
+  position: relative;
   display: flex;
-  justify-content: flex-start;
-  gap: 10px;
   align-items: center;
-  width: 20px;
-  max-width: 20px;
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox::before {
+  content: url("/icons/checkbox_default_icon.svg");
+  display: block;
+  width: 15px;
+  height: 15px;
+}
+
+.checkbox:hover::before {
+  content: url("/icons/checkbox_hover_icon.svg");
+}
+
+.checkbox:checked::before {
+  content: url("/icons/checkbox_checked_icon.svg");
+}
+
+.checkbox:checked:hover::before {
+  content: url("/icons/checkbox_uncheck_icon.svg");
 }
 
 .control {
@@ -159,51 +163,61 @@
   max-width: 80px;
 }
 
-.display {
-  font-size: 14px;
-}
-
-.displayConf {
-  display: flex;
-  gap: 10px;
-  font-size: 14px;
-  justify-content: space-between;
-}
-
-.hide_closed {
-  display: flex;
-  border-radius: 5px;
-  gap: 5px;
-}
-
-.visible_deleted {
-  display: flex;
-  border-radius: 5px;
-  gap: 5px;
-}
-
-.left_block {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.displayConf,
+.hide_closed,
+.visible_deleted,
+.left_block,
 .right_block {
   display: flex;
-  align-items: center;
   gap: 10px;
+  font-size: 14px;
+  align-items: center;
 }
 
-.sort {
-  display: flex;
+.hide_closed,
+.visible_deleted {
+  border-radius: 5px;
 }
 
-.display {
+.display,
+.action {
+  font-size: 14px;
   display: flex;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 6px 12px;
+  width: max-content;
+  height: 32px;
+  box-shadow: 0 0 0 1px rgba(70, 79, 96, 0.16), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  cursor: pointer;
+  gap: 5px;
+  border: none;
+}
+
+.display p,
+.action p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 143%;
+  letter-spacing: 0.02em;
+  color: var(--gray-700);
+}
+
+.uncheck {
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.uncheck:disabled {
+  filter: grayscale(1);
+  cursor: auto;
 }
 
 .footer {
-  display: flex;
   flex-shrink: 0;
   width: 100%;
   height: 40px;
@@ -214,9 +228,43 @@
   position: relative;
 }
 
-.pagination {
-  // position: absolute;
+.left_block {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  bottom: 0;
-  left: 50%;
+}
+
+.left_block span {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.03em;
+  color: var(--gray-500);
+}
+
+.right_block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right_block p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.03em;
+  text-align: right;
+  color: var(--gray-500);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 15px;
+  // border-top: 1px solid #ccc;
+  // margin-top: 20px;
 }

@@ -1,9 +1,11 @@
 .main {
   display: flex;
+  flex-direction: column;
   /* flex-direction: column; */
   justify-content: space-between;
   align-items: flex-start;
   /* padding: 6rem; */
+  width: 100%;
   min-height: calc(100vh - var(--header-height));
 }
 

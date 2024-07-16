@@ -7,15 +7,6 @@ import mokeWaybill from "@/constants/mokeWaybill";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWaybillsSuccess } from "@/store/waybills/slice";
 import { RootState } from "@/store/store";
-import address from "../../public/icons/address.svg";
-import title from "../../public/icons/title.svg";
-import owner from "../../public/icons/owner.svg";
-import driver from "../../public/icons/driver.svg";
-import calendar_date from "../../public/icons/calendar_date.svg";
-import status from "../../public/icons/status.svg";
-import sort_by from "../../public/icons/sort_by.svg";
-import settings from "../../public/icons/settings.svg";
-
 import Image from "next/image";
 import { fetchDriversSuccess } from "@/store/drivers/slice";
 import mokeDrivers from "@/constants/mokeDrivers";
@@ -39,13 +30,12 @@ export default function Waybill() {
   dispatch(fetchAddressSuccess(mokeAddress));
   dispatch(fetchUsersSuccess(mokeUsers));
 
-  // users
-  // organizations
-
   const waybillData = useSelector((state: RootState) => state.waybills);
 
+  const [checkedWaybills, setCheckedWaybills] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 25;
+  const [itemsPerPage, setItemsPerPage] = useState(15);
+  const totalPages = Math.ceil(waybillData.waybills.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = waybillData.waybills.slice(
@@ -53,14 +43,13 @@ export default function Waybill() {
     indexOfLastItem
   );
 
-  const goToPrevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+  const goToPrevPage = () => setCurrentPage((prevPage) => prevPage - 1);
+  const goToNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
+  const [isChecked, setIsChecked] = useState(false);
+  const handleItemsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1);
   };
-
-  const goToNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
   return (
     <section className={styles.waybill}>
       <div className={styles.header}>
@@ -72,185 +61,144 @@ export default function Waybill() {
           <button type="button" className={styles.button}>
             {WaybillsNavigation[currentLang].createWaybills}
           </button>
-          <button type="button" className={styles.button}>
-            {WaybillsNavigation[currentLang].toExport}
-          </button>
         </div>
         <div className={styles.displayConf}>
           <div className={styles.left_block}>
-            <div className={styles.sort}>
-              <label htmlFor="sort by" className={styles.sort}>
-                <Image
-                  src={sort_by}
-                  alt={WaybillsNavigation[currentLang].sortBy}
-                  width={18}
-                  height={18}
-                />
-                <p>{WaybillsNavigation[currentLang].sortBy}: </p>
-              </label>
-              <select name="sort" id="sort by">
-                <option value="byDate">Дате</option>
-                <option value="byStatus">Статусу</option>
-                <option value="byOwner">Автору</option>
-              </select>
-            </div>
+            <button className={styles.display}>
+              <p>Отображение</p>
+              <Image
+                src="/icons/down_icon.svg"
+                alt="развернуть"
+                width={16}
+                height={16}
+              />
+            </button>
+
+            <span className={styles.counter}>
+              {checkedWaybills.length} выбрано
+            </span>
+
+            <button className={styles.action}>
+              <p>Действие</p>
+              <Image
+                src="/icons/down_icon.svg"
+                alt="развернуть"
+                width={16}
+                height={16}
+              />
+            </button>
+            <button
+              className={styles.uncheck}
+              disabled={checkedWaybills.length <= 0}
+            >
+              <Image
+                src="/icons/uncheck_icon.svg"
+                alt="развернуть"
+                width={16}
+                height={16}
+              />
+            </button>
+
             <div>
-
-            </div>
-          </div>
-
-          <div className={styles.right_block}>
-            <div className={styles.hide_closed}>
-              <input type="checkbox" className={styles.checkbox}></input>
-              <p>Скрыть закрытые</p>
-            </div>
-            <div className={styles.visible_deleted}>
-              <input type="checkbox" className={styles.checkbox}></input>
-              <p>Показать удалённые</p>
+              <div></div>
             </div>
           </div>
         </div>
       </div>
 
       <div className={styles.heading}>
-        <div className={styles.check}>
-          <p className={styles.table_title}>
-            <input type="checkbox" className={styles.checkbox}></input>
-          </p>
-        </div>
-
-        <div className={styles.name}>
-          <Image
-            src={title}
-            alt={WaybillsNavigation[currentLang].name}
-            width={18}
-            height={18}
+        <label className={styles.check}>
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            checked={isChecked}
+            onChange={() => setIsChecked((prev) => !prev)}
           />
-          <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].name}
-          </p>
-        </div>
-        <div className={styles.vehicle}>
-          <Image
-            src={address}
-            alt={WaybillsNavigation[currentLang].vehicle}
-            width={18}
-            height={18}
-          />
-          <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].vehicle}
-          </p>
-        </div>
-        <div className={styles.address}>
-          <Image
-            src={address}
-            alt={WaybillsNavigation[currentLang].address}
-            width={18}
-            height={18}
-          />
+        </label>
+        <div className={styles.slider}></div>
+        <div className={`${styles.address} ${styles.heading_title}`}>
           <p className={styles.table_title}>
             {WaybillsNavigation[currentLang].address}
           </p>
         </div>
-        <div className={styles.date}>
-          <Image
-            src={calendar_date}
-            alt={WaybillsNavigation[currentLang].date}
-            width={18}
-            height={18}
-          />
+        <div className={`${styles.name} ${styles.heading_title}`}>
           <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].date}
+            {WaybillsNavigation[currentLang].name}
           </p>
         </div>
-        <div className={styles.driver}>
-          <Image
-            src={driver}
-            alt={WaybillsNavigation[currentLang].driver}
-            width={18}
-            height={18}
-          />
-          <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].driver}
-          </p>
-        </div>
-        <div className={styles.status}>
-          <Image
-            src={status}
-            alt={WaybillsNavigation[currentLang].status}
-            width={18}
-            height={18}
-          />
+
+        <div className={`${styles.status} ${styles.heading_title}`}>
           <p className={styles.table_title}>
             {WaybillsNavigation[currentLang].status}
           </p>
         </div>
-        <div className={styles.owner}>
-          <Image
-            src={owner}
-            alt={WaybillsNavigation[currentLang].owner}
-            width={18}
-            height={18}
-          />
+
+        <div className={`${styles.date} ${styles.heading_title}`}>
           <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].owner}
+            {WaybillsNavigation[currentLang].date}
           </p>
         </div>
-        <div className={styles.control}>
+        <div className={`${styles.flight} ${styles.heading_title}`}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].flight}
+          </p>
           <Image
-            src={settings}
-            alt={WaybillsNavigation[currentLang].control}
+            src="/icons/address.svg"
+            alt={WaybillsNavigation[currentLang].vehicle}
             width={18}
             height={18}
           />
+        </div>
+
+        <div className={`${styles.vehicle} ${styles.heading_title}`}>
           <p className={styles.table_title}>
-            {WaybillsNavigation[currentLang].control}
+            {WaybillsNavigation[currentLang].vehicle}
+          </p>
+        </div>
+        <div className={styles.arrow}></div>
+        <div className={`${styles.driver} ${styles.heading_title}`}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].driver}
+          </p>
+        </div>
+
+        <div className={`${styles.owner} ${styles.heading_title}`}>
+          <p className={styles.table_title}>
+            {WaybillsNavigation[currentLang].owner}
           </p>
         </div>
       </div>
 
       <ul className={styles.list}>
-        {waybillData.waybills.map((waybill) => {
-          return <WaybillRow key={waybill.id} waybill={waybill} />;
-        })}
+        {currentItems.map((waybill) => (
+          <WaybillRow key={waybill.id} waybill={waybill} />
+        ))}
       </ul>
 
       <div className={styles.footer}>
         <div className={styles.pagination}>
-          <button onClick={goToPrevPage} disabled={currentPage === 1}>
-            Предыдущая
-          </button>
-          <button
-            onClick={() => setCurrentPage(1)}
-            disabled={currentPage === 1}
-          >
-            Первая
-          </button>
-          <span>Текущая страница: {currentPage}</span>
-          <button
-            onClick={() =>
-              setCurrentPage(
-                Math.ceil(waybillData.waybills.length / itemsPerPage)
-              )
-            }
-            disabled={
-              currentPage ===
-              Math.ceil(waybillData.waybills.length / itemsPerPage)
-            }
-          >
-            Последняя
-          </button>
-          <button
-            onClick={goToNextPage}
-            disabled={
-              currentPage ===
-              Math.ceil(waybillData.waybills.length / itemsPerPage)
-            }
-          >
-            Следующая
-          </button>
+          <div className={styles.left_block}>
+            <span>{`${indexOfFirstItem + 1}-${Math.min(indexOfLastItem, waybillData.waybills.length)} из ${waybillData.waybills.length}`}</span>
+          </div>
+          <div className={styles.right_block}>
+            <p>Строк на странице: </p>
+            <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+              <option value={15}>15</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+            <button onClick={goToPrevPage} disabled={currentPage === 1}>
+              Предыдущая
+            </button>
+            <span>{`${currentPage}/${totalPages}`}</span>
+            <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+              Следующая
+            </button>
+          </div>
         </div>
       </div>
+
     </section>
   );
 }

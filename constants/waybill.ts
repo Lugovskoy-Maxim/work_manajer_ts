@@ -4,6 +4,7 @@ export type WaybillsNavigationType = {
 };
 
 type NavigationLocale = {
+  flight: string,
   createWaybills: string;
   toExport: string;
   control: string;
@@ -20,6 +21,7 @@ type NavigationLocale = {
 
 const WaybillsNavigation: WaybillsNavigationType = {
   ru: {
+    flight: 'Рейсов',
     createWaybills: "Создать путевой лист +",
     toExport: "Экспортировать",
     control: 'Опции',
@@ -34,6 +36,7 @@ const WaybillsNavigation: WaybillsNavigationType = {
     displayBy: "Отображать по",
   },
   en: {
+    flight: "flight",
     createWaybills: "Create new waybills +",
     toExport: "Export",
     control: 'Control',
