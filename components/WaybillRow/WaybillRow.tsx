@@ -1,30 +1,51 @@
+"use client"
+import React, { useState } from "react";
 import styles from "./waybillRow.module.scss";
 import Image from "next/image";
-import edit from "../../public/icons/edit.svg";
-import trash from "../../public/icons/trash.svg";
-import { openModal } from "../../store/modal/slice";
 import { useDispatch, useSelector } from "react-redux";
-
-import { Waybill } from "@/types/waybill";
 import { RootState } from "@/store/store";
+import { Waybill } from "@/types/waybill";
 import { Driver } from "@/types/driver";
 import { Address } from "@/types/address";
 import { User } from "@/types/user";
 import { Vehicle } from "@/types/vehicle";
-import { useState } from "react";
+import { openModal } from "../../store/modal/slice";
 
-import arrow_right_icon from "../../public/icons/arrow_right_icon.svg";
-import date_list_icon from "../../public/icons/date_list_icon.svg";
-import rectangle_icon from "../../public/icons/rectangle_icon.svg";
-import arrow_down_icon from "../../public/icons/arrow_down_icon.svg";
-
-type WaybillDataProps = {
+type WaybillRowProps = {
   waybill: Waybill;
+  columnWidths: { [key in keyof typeof styles]?: number };
 };
 
-const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
+const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
   const dispatch = useDispatch();
-  const data = waybill;
+
+  // Fetching address, driver, user, and vehicle data from Redux store
+  const addresses = useSelector((state: RootState) => state.address.address);
+  const drivers = useSelector((state: RootState) => state.drivers.drivers);
+  const users = useSelector((state: RootState) => state.users.users);
+  const vehicles = useSelector((state: RootState) => state.vehicles.vehicles);
+
+  // Function to find address by ID
+  const findAddressById = (addressId: string): Address | undefined => {
+    return addresses.find((address) => address.id === addressId);
+  };
+
+  // Function to find driver by ID
+  const findDriverById = (driverId: string): Driver | undefined => {
+    return drivers.find((driver) => driver.id === driverId);
+  };
+
+  // Function to find user by ID
+  const findUserById = (userId: string): User | undefined => {
+    return users.find((user) => user.id === userId);
+  };
+
+  // Function to find vehicle by ID
+  const findVehicleById = (vehicleId: string): Vehicle | undefined => {
+    return vehicles.find((vehicle) => vehicle.id === vehicleId);
+  };
+
+  // Handling open modal action
   const handleOpenModal = (
     id: string,
     type:
@@ -40,55 +61,29 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
     dispatch(openModal({ id, type }));
   };
 
-  // ADDRESS
-  const address = useSelector((state: RootState) => state.address.address);
-  const findAddressById = (addressId: string): Address | undefined => {
-    return address.find((address) => address.id === addressId);
+  // Functions to get names or numbers based on the retrieved data
+  const getAddressName = (addressData: Address | undefined): string => {
+    if (!addressData) return "Адрес не найден";
+    return addressData.name
+      ? addressData.name
+      : `${addressData.street} ${addressData.buildingNumber || ""}`;
   };
-  const addressForHTML = findAddressById(data.address);
-  const addressName = addressForHTML
-    ? `${
-        addressForHTML.name
-          ? addressForHTML.name
-          : `${addressForHTML.street} ${
-              addressForHTML.buildingNumber ? addressForHTML.buildingNumber : ""
-            }`
-      }`
-    : "Адрес не найден";
-  //
 
-  // DRIVER
-  const drivers = useSelector((state: RootState) => state.drivers.drivers);
-  const findDriverById = (driverId: string): Driver | undefined => {
-    return drivers.find((driver) => driver.id === driverId);
+  const getDriverName = (driverData: Driver | undefined): string => {
+    if (!driverData) return "Водитель не найден";
+    return `${driverData.firstName} ${driverData.lastName}`;
   };
-  const driver = findDriverById(data.drivers);
-  const driverName = driver
-    ? `${driver.firstName} ${driver.lastName}`
-    : "Водитель не найден";
-  //
 
-  // OWNER
-  const users = useSelector((state: RootState) => state.users.users);
-  const findUserById = (userId: string): User | undefined => {
-    return users.find((user) => user.id === userId);
+  const getUserName = (userData: User | undefined): string => {
+    if (!userData) return "Пользователь не найден";
+    return `${userData.firstName} ${userData.lastName}`;
   };
-  const user = findUserById(data.owner);
-  const userName = user
-    ? `${user.firstName} ${user.lastName}`
-    : "Пользователь не найден";
-  //
 
-  // OWNER
-  const vehicles = useSelector((state: RootState) => state.vehicles.vehicles);
-  const findVehicleById = (vehicleId: string): Vehicle | undefined => {
-    return vehicles.find((vehicle) => vehicle.id === vehicleId);
+  const getVehicleNumber = (vehicleData: Vehicle | undefined): string => {
+    if (!vehicleData) return "X 000 XX 000";
+    return vehicleData.reg_number;
   };
-  const vehicle = findVehicleById(data.vehicle);
-  // const userName = user
-  //   ? `${user.firstName} ${user.lastName}`
-  //   : "Пользователь не найден";
-  //
+
   const [isChecked, setIsChecked] = useState(false);
 
   return (
@@ -103,88 +98,88 @@ const WaybillRow: React.FC<WaybillDataProps> = ({ waybill }) => {
       </label>
 
       <button className={styles.slider}>
-        <Image src={arrow_right_icon} alt={""} width={16} height={16}></Image>
+        <Image src="/icons/arrow_right_icon.svg" alt="" width={16} height={16} />
       </button>
 
       <div
         className={
-          addressForHTML
-            ? `${styles.address}`
-            : `${styles.address} ${styles.not_found}`
+          waybill.address ? styles.address : `${styles.address} ${styles.not_found}`
         }
-        onClick={(f) => {
-          addressForHTML ? handleOpenModal(data.address, "address") : f;
-        }}
+        style={{ width: columnWidths.address }}
+        onClick={() =>
+          waybill.address && handleOpenModal(waybill.address, "address")
+        }
       >
-        <p>{addressName}</p>
+        <p>{getAddressName(findAddressById(waybill.address))}</p>
       </div>
 
       <div
         className={styles.title}
-        onClick={() => handleOpenModal(data.id, "waybill")}
+        style={{ width: columnWidths.name}}
+        onClick={() => handleOpenModal(waybill.id, "waybill")}
       >
-        <p>{`Путевой лист ТСПЛ-${data.waybill_number}`}</p>
+        <p>{`Путевой лист ТСПЛ-${waybill.waybill_number}`}</p>
       </div>
 
       <div
         className={`${styles.status} ${
-          data.status == "Открыт" ? styles.opened : styles.closed
+          waybill.status === "Открыт" ? styles.opened : styles.closed
         }`}
+        style={{ width: columnWidths.status }}
       >
         <div
           className={`${styles.dot} ${
-            data.status == "Открыт" ? styles.green : styles.blue
+            waybill.status === "Открыт" ? styles.green : styles.blue
           }`}
         ></div>
-        <p>{data.status}</p>
+        <p>{waybill.status}</p>
       </div>
 
-      <div className={styles.date}>
-        <Image src={date_list_icon} alt={""} width={16} height={16}></Image>
-        <p>{data.date}</p>
+      <div className={styles.date} style={{ width: columnWidths.date }}>
+        <Image
+          src="/icons/date_list_icon.svg"
+          alt=""
+          width={16}
+          height={16}
+        />
+        <p>{waybill.date}</p>
       </div>
-      <div className={styles.flight}>
+
+      <div className={styles.flight} style={{ width: columnWidths.flight}}>
         <div>
-          <p>{"0"}</p>
+          <p>{waybill.flights || 0}</p>
         </div>
       </div>
 
-      <div
-        className={
-          driver ? `${styles.driver}` : `${styles.driver} ${styles.not_found}`
+      <div className={waybill.drivers ? styles.driver : `${styles.driver} ${styles.not_found}`}
+        style={{ width: columnWidths.driver }}
+        onClick={() =>
+          waybill.drivers && handleOpenModal(waybill.drivers, "driver")
         }
-        onClick={(f) => {
-          driver ? handleOpenModal(data.drivers, "driver") : f;
-        }}
       >
-        <p>{driverName}</p>
-      </div>
-      <div className={styles.arrow}>
-        <p>{">"}</p>
+        <p>{getDriverName(findDriverById(waybill.drivers))}</p>
       </div>
 
       <div
         className={
-          vehicle
-            ? `${styles.vehicle}`
-            : `${styles.vehicle} ${styles.not_found}`
+          waybill.vehicle ? styles.vehicle : `${styles.vehicle} ${styles.not_found}`
         }
-        onClick={(f) => {
-          vehicle ? handleOpenModal(data.vehicle, "vehicle") : f;
-        }}
+        style={{ width: columnWidths.vehicle}}
+        onClick={() =>
+          waybill.vehicle && handleOpenModal(waybill.vehicle, "vehicle")
+        }
       >
-        <p>{vehicle ? vehicle.reg_number : "X 000 XX 000"}</p>
+        <p>{getVehicleNumber(findVehicleById(waybill.vehicle))}</p>
       </div>
 
       <div
         className={
-          user ? `${styles.owner}` : `${styles.owner} ${styles.not_found}`
+          waybill.owner ? styles.owner : `${styles.owner} ${styles.not_found}`
         }
-        onClick={(f) => {
-          user ? handleOpenModal(data.owner, "owner") : f;
-        }}
+        style={{ width: columnWidths.owner}}
+        onClick={() => waybill.owner && handleOpenModal(waybill.owner, "owner")}
       >
-        <p>{userName}</p>
+        <p>{getUserName(findUserById(waybill.owner))}</p>
       </div>
     </li>
   );
