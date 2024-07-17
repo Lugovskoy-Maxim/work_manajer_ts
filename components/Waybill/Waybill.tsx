@@ -13,7 +13,7 @@ import mokeDrivers from "@/constants/mokeDrivers";
 import { mokeVehicles } from "@/constants/mokeVehicles";
 import { fetchVehiclesSuccess } from "@/store/vehicles/slice";
 import { fetchOrganizationsSuccess } from "@/store/organizations/slice";
-import { mokeOrganizations } from "@/constants/moleOrganizations";
+import { mokeOrganizations } from "@/constants/mokeOrganizations";
 import { fetchAddressSuccess } from "@/store/address/slice";
 import mokeAddress from "@/constants/mokeAddress";
 import mokeUsers from "@/constants/mokeUsers";
