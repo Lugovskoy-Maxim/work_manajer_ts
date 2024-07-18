@@ -63,24 +63,24 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
 
   // Functions to get names or numbers based on the retrieved data
   const getAddressName = (addressData: Address | undefined): string => {
-    if (!addressData) return "Адрес не найден";
+    if (!addressData) return "Ошибка.";
     return addressData.name
       ? addressData.name
       : `${addressData.street} ${addressData.buildingNumber || ""}`;
   };
 
   const getDriverName = (driverData: Driver | undefined): string => {
-    if (!driverData) return "Водитель не найден";
+    if (!driverData) return "Ошибка.";
     return `${driverData.firstName} ${driverData.lastName}`;
   };
 
   const getUserName = (userData: User | undefined): string => {
-    if (!userData) return "Пользователь не найден";
+    if (!userData) return "Ошибка.";
     return `${userData.firstName} ${userData.lastName}`;
   };
 
   const getVehicleNumber = (vehicleData: Vehicle | undefined): string => {
-    if (!vehicleData) return "X 000 XX 000";
+    if (!vehicleData) return "Ошибка";
     return vehicleData.reg_number;
   };
 

@@ -16,6 +16,8 @@ import { fetchAddressSuccess } from "@/store/address/slice";
 import mokeAddress from "@/constants/mokeAddress";
 import mokeUsers from "@/constants/mokeUsers";
 import { fetchUsersSuccess } from "@/store/users/slice";
+import { mokeVehicles } from "@/constants/mokeVehicles";
+import { mokeOrganizations } from "@/constants/mokeOrganizations";
 
 // Define the type for column keys
 type WaybillsNavigationKeys = keyof (typeof WaybillsNavigation)["ru"];
@@ -37,11 +39,11 @@ export default function Waybill() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Simulating API fetch with mock data
+    // Симуляция запроса API 
     dispatch(fetchWaybillsSuccess(mokeWaybill));
     dispatch(fetchDriversSuccess(mokeDrivers));
-    dispatch(fetchVehiclesSuccess([])); // Use an empty array if mock data not provided
-    dispatch(fetchOrganizationsSuccess([])); // Use an empty array if mock data not provided
+    dispatch(fetchVehiclesSuccess(mokeVehicles)); 
+    dispatch(fetchOrganizationsSuccess(mokeOrganizations)); 
     dispatch(fetchAddressSuccess(mokeAddress));
     dispatch(fetchUsersSuccess(mokeUsers));
   }, [dispatch]);
@@ -69,32 +71,37 @@ export default function Waybill() {
     setCurrentPage(1);
   };
 
-  // Column resizing logic
-  const [columnWidths, setColumnWidths] = useState<{
-    [key in WaybillsNavigationKeys]?: number;
-  }>(() => {
-    const savedWidths = localStorage.getItem("columnWidths");
-    return savedWidths
-      ? JSON.parse(savedWidths)
-      : {
-          address: 252,
-          name: 283,
-          status: 80,
-          date: 227,
-          flight: 150,
-          vehicle: 108,
-          driver: 291,
-          owner: 261,
-        };
+  // логика изменения размера столбцов
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedWidths = localStorage.getItem('columnWidths');
+      if (savedWidths) {
+        setColumnWidths(JSON.parse(savedWidths));
+      }
+    }
+  }, []);
+
+
+  const [columnWidths, setColumnWidths] = useState<{ [key in WaybillsNavigationKeys]?: number }>({
+    address: 252,
+    name: 283,
+    status: 80,
+    date: 227,
+    flight: 150,
+    vehicle: 108,
+    driver: 291,
+    owner: 261,
   });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('columnWidths', JSON.stringify(columnWidths));
+    }
+  }, [columnWidths]);
 
   const startX = useRef(0);
   const startWidth = useRef(0);
   const activeColumn = useRef<WaybillsNavigationKeys | null>(null);
-
-  useEffect(() => {
-    localStorage.setItem("columnWidths", JSON.stringify(columnWidths));
-  }, [columnWidths]);
 
   const handleMouseDown = (
     e: React.MouseEvent,
