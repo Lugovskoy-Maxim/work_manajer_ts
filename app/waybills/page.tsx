@@ -16,13 +16,13 @@ export default function Index() {
           <Waybill />
         </div>
       </main>
-      <Link
+      {/* <Link
         className={styles.author}
         href="https://github.com/Lugovskoy-Maxim"
         target="_blank"
       >
         © Максим Луговской
-      </Link>
+      </Link> */}
       <ModalWindow />
     </Provider>
   );

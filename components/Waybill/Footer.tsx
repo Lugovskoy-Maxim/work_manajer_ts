@@ -1,9 +1,14 @@
 import React from "react";
 import styles from "./waybill.module.scss";
+import arrow_right_icon from "../../public/icons/arrow_right_icon.svg";
+import arrow_left_icon from "../../public/icons/arrow_left_icon.svg";
+import Image from "next/image";
 
 interface FooterProps {
   itemsPerPage: number;
-  handleItemsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleItemsPerPageChange: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
   currentPage: number;
   totalPages: number;
   goToPrevPage: () => void;
@@ -22,12 +27,12 @@ const Footer: React.FC<FooterProps> = ({
   goToNextPage,
   waybillData,
   indexOfFirstItem,
-  indexOfLastItem
+  indexOfLastItem,
 }) => (
   <div className={styles.footer}>
     <div className={styles.pagination}>
       <div className={styles.left_block}>
-        <span>{`${indexOfFirstItem + 1}-${Math.min(
+        <span>{`Отображены ${indexOfFirstItem + 1}-${Math.min(
           indexOfLastItem,
           waybillData.waybills.length
         )} из ${waybillData.waybills.length}`}</span>
@@ -40,14 +45,11 @@ const Footer: React.FC<FooterProps> = ({
           <option value={50}>50</option>
         </select>
         <button onClick={goToPrevPage} disabled={currentPage === 1}>
-          Предыдущая
+          <Image src={arrow_left_icon} alt={""} height={16} width={16}></Image>
         </button>
         <span>{`${currentPage}/${totalPages}`}</span>
-        <button
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Следующая
+        <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+          <Image src={arrow_right_icon} alt={""} height={16} width={16}></Image>
         </button>
       </div>
     </div>

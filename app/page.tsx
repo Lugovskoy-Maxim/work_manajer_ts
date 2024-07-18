@@ -17,13 +17,13 @@ export default function Home() {
         <Menu />
         </div>
       </main>
-      <Link
+      {/* <Link
         className={styles.author}
         href="https://github.com/Lugovskoy-Maxim"
         target="_blank"
       >
         © Максим Луговской
-      </Link>
+      </Link> */}
       <ModalWindow />
     </Provider>
   );

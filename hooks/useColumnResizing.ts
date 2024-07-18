@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 
 const defaultWidths = {
   address: 252,
-  name: 283,
+  name: 263,
   status: 80,
   date: 227,
   flight: 150,
