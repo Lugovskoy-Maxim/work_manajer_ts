@@ -1,15 +1,12 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import styles from "./waybillRow.module.scss";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
 import { Waybill } from "@/types/waybill";
-import { Driver } from "@/types/driver";
-import { Address } from "@/types/address";
-import { User } from "@/types/user";
-import { Vehicle } from "@/types/vehicle";
-import { openModal } from "../../store/modal/slice";
+import { useFindData } from "@/hooks";
+import { openModal } from "@/store/modal/slice";
+import { Address, Driver, User, Vehicle } from "@/types";
 
 type WaybillRowProps = {
   waybill: Waybill;
@@ -18,34 +15,8 @@ type WaybillRowProps = {
 
 const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
   const dispatch = useDispatch();
+  const { findAddressById, findDriverById, findUserById, findVehicleById } = useFindData();
 
-  // Fetching address, driver, user, and vehicle data from Redux store
-  const addresses = useSelector((state: RootState) => state.address.address);
-  const drivers = useSelector((state: RootState) => state.drivers.drivers);
-  const users = useSelector((state: RootState) => state.users.users);
-  const vehicles = useSelector((state: RootState) => state.vehicles.vehicles);
-
-  // Function to find address by ID
-  const findAddressById = (addressId: string): Address | undefined => {
-    return addresses.find((address) => address.id === addressId);
-  };
-
-  // Function to find driver by ID
-  const findDriverById = (driverId: string): Driver | undefined => {
-    return drivers.find((driver) => driver.id === driverId);
-  };
-
-  // Function to find user by ID
-  const findUserById = (userId: string): User | undefined => {
-    return users.find((user) => user.id === userId);
-  };
-
-  // Function to find vehicle by ID
-  const findVehicleById = (vehicleId: string): Vehicle | undefined => {
-    return vehicles.find((vehicle) => vehicle.id === vehicleId);
-  };
-
-  // Handling open modal action
   const handleOpenModal = (
     id: string,
     type:
@@ -61,7 +32,6 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
     dispatch(openModal({ id, type }));
   };
 
-  // Functions to get names or numbers based on the retrieved data
   const getAddressName = (addressData: Address | undefined): string => {
     if (!addressData) return "Ошибка.";
     return addressData.name
@@ -115,7 +85,7 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
 
       <div
         className={styles.title}
-        style={{ width: columnWidths.name}}
+        style={{ width: columnWidths.name }}
         onClick={() => handleOpenModal(waybill.id, "waybill")}
       >
         <p>{`Путевой лист ТСПЛ-${waybill.waybill_number}`}</p>
@@ -136,22 +106,20 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
       </div>
 
       <div className={styles.date} style={{ width: columnWidths.date }}>
-        <Image
-          src="/icons/date_list_icon.svg"
-          alt=""
-          width={16}
-          height={16}
-        />
+        <Image src="/icons/date_list_icon.svg" alt="" width={16} height={16} />
         <p>{waybill.date}</p>
       </div>
 
-      <div className={styles.flight} style={{ width: columnWidths.flight}}>
+      <div className={styles.flight} style={{ width: columnWidths.flight }}>
         <div>
           <p>{waybill.flights || 0}</p>
         </div>
       </div>
 
-      <div className={waybill.drivers ? styles.driver : `${styles.driver} ${styles.not_found}`}
+      <div
+        className={
+          waybill.drivers ? styles.driver : `${styles.driver} ${styles.not_found}`
+        }
         style={{ width: columnWidths.driver }}
         onClick={() =>
           waybill.drivers && handleOpenModal(waybill.drivers, "driver")
@@ -164,7 +132,7 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
         className={
           waybill.vehicle ? styles.vehicle : `${styles.vehicle} ${styles.not_found}`
         }
-        style={{ width: columnWidths.vehicle}}
+        style={{ width: columnWidths.vehicle }}
         onClick={() =>
           waybill.vehicle && handleOpenModal(waybill.vehicle, "vehicle")
         }
@@ -176,7 +144,7 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
         className={
           waybill.owner ? styles.owner : `${styles.owner} ${styles.not_found}`
         }
-        style={{ width: columnWidths.owner}}
+        style={{ width: columnWidths.owner }}
         onClick={() => waybill.owner && handleOpenModal(waybill.owner, "owner")}
       >
         <p>{getUserName(findUserById(waybill.owner))}</p>
