@@ -12,9 +12,9 @@ export default function Home() {
       <GlobalMenu/>
       <main className={styles.main}>
       <Header />
-        {/* <Menu /> */}
         <div className={styles.workspace}>
-          <Waybill />
+          {/* <Waybill /> */}
+        <Menu />
         </div>
       </main>
       <Link

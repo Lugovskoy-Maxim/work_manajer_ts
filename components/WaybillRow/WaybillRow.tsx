@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./waybillRow.module.scss";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -11,9 +11,11 @@ import { Address, Driver, User, Vehicle } from "@/types";
 type WaybillRowProps = {
   waybill: Waybill;
   columnWidths: { [key in keyof typeof styles]?: number };
+  isChecked: boolean;
+  onCheckboxChange: (id: string, isChecked: boolean) => void;
 };
 
-const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
+const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths, isChecked, onCheckboxChange }) => {
   const dispatch = useDispatch();
   const { findAddressById, findDriverById, findUserById, findVehicleById } = useFindData();
 
@@ -54,7 +56,9 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
     return vehicleData.reg_number;
   };
 
-  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = () => {
+    onCheckboxChange(waybill.id, !isChecked);
+  };
 
   return (
     <li className={styles.item}>
@@ -63,7 +67,7 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
           type="checkbox"
           className={styles.checkbox}
           checked={isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
+          onChange={handleCheckboxChange}
         />
       </label>
 
@@ -150,7 +154,6 @@ const WaybillRow: React.FC<WaybillRowProps> = ({ waybill, columnWidths }) => {
         <p>{getUserName(findUserById(waybill.owner))}</p>
       </div>
     </li>
-  );
-};
-
+)
+}
 export default WaybillRow;

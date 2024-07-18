@@ -165,10 +165,19 @@
   background: var(--gray-50);
   border-radius: 4px;
   padding: 1px 8px;
-  // width: 105px;
   height: 20px;
   flex-shrink: 1;
 }
+
+.address,
+.name,  .vehicle {
+  justify-content: flex-start;
+}
+
+.driver{
+  justify-content: flex-end;
+}
+
 
 .driver p,
 .vehicle p {

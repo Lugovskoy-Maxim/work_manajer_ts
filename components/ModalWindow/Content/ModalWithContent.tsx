@@ -64,10 +64,6 @@ export default function ModalWithContent() {
         const address = findDataAddressById(id);
         content = address ? <ModalWithAddress address={address} /> : null;
         break;
-    // case 'organization':
-    //   const organization = findDataOrganizationById(id);
-    //   content = driver ? <ModalWithDriver driver={driver} /> : null;
-    //   break;
     default:
       break;
   }

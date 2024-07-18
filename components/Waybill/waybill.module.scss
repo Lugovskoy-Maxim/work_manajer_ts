@@ -77,28 +77,25 @@
 .vehicle,
 .driver,
 .date,
-// .status,
+.status,
 .owner {
   display: flex;
   justify-content: center;
   gap: 5px;
   height: 100%;
   align-items: center;
-  padding-left: 15px;
 }
 
-.status {
-  width: 76px;
-}
+
 
 .address,
-.name {
-  display: flex;
+.name,  .vehicle {
   justify-content: flex-start;
-  gap: 5px;
-  width: 15%;
-  // max-width: 15%;
-  padding-left: 15px;
+}
+
+.driver{
+  justify-content: flex-end;
+  padding-right: 5px;
 }
 
 .vehicle,
@@ -124,6 +121,7 @@
 }
 
 .check {
+  visibility: hidden;
   position: relative;
   display: flex;
   align-items: center;
@@ -274,8 +272,6 @@
   align-items: center;
   height: 100%;
   padding: 0 15px;
-  // border-top: 1px solid #ccc;
-  // margin-top: 20px;
 }
 
 .heading_title {
@@ -284,7 +280,7 @@
   position: relative;
 
   .resizer {
-    width: 2px;
+    width: 1px;
     height: 100%;
     background: #ddd;
     cursor: col-resize;

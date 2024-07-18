@@ -23,12 +23,20 @@ const columns: WaybillsNavigationKeys[] = [
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
   const waybillData = useWaybillData();
-  const { checkedWaybills, setCheckedWaybills, isChecked, setIsChecked, handleItemsPerPageChange, itemsPerPage, currentPage, totalPages, goToPrevPage, goToNextPage, currentItems, indexOfFirstItem, indexOfLastItem } = usePagination(waybillData);
+  const { isChecked, setIsChecked, handleItemsPerPageChange, itemsPerPage, currentPage, totalPages, goToPrevPage, goToNextPage, currentItems, indexOfFirstItem, indexOfLastItem } = usePagination(waybillData);
   const { columnWidths, handleMouseDown } = useColumnResizing<WaybillsNavigationKeys>(columns);
+
+  const [checkedWaybills, setCheckedWaybills] = useState<string[]>([]);
+
+  const handleCheckboxChange = (id: string, isChecked: boolean) => {
+    setCheckedWaybills(prev => 
+      isChecked ? [...prev, id] : prev.filter(waybillId => waybillId !== id)
+    );
+  };
 
   return (
     <section className={styles.waybill}>
-      <Header currentLang={currentLang} checkedWaybills={checkedWaybills} />
+      <Header currentLang={currentLang} checkedWaybills={checkedWaybills} setCheckedWaybills={setCheckedWaybills} />
 
       <div className={styles.heading}>
         <label className={styles.check}>
@@ -63,6 +71,8 @@ export default function Waybill() {
             key={waybill.id}
             waybill={waybill}
             columnWidths={columnWidths}
+            isChecked={checkedWaybills.includes(waybill.id)}
+            onCheckboxChange={handleCheckboxChange}
           />
         ))}
       </ul>
