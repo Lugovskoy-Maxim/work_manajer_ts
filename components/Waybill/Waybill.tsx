@@ -23,20 +23,37 @@ const columns: WaybillsNavigationKeys[] = [
 export default function Waybill() {
   const [currentLang, setLang] = useState<"ru" | "en">("ru");
   const waybillData = useWaybillData();
-  const { isChecked, setIsChecked, handleItemsPerPageChange, itemsPerPage, currentPage, totalPages, goToPrevPage, goToNextPage, currentItems, indexOfFirstItem, indexOfLastItem } = usePagination(waybillData);
-  const { columnWidths, handleMouseDown } = useColumnResizing<WaybillsNavigationKeys>(columns);
+  const {
+    isChecked,
+    setIsChecked,
+    handleItemsPerPageChange,
+    itemsPerPage,
+    currentPage,
+    totalPages,
+    goToPrevPage,
+    goToNextPage,
+    currentItems,
+    indexOfFirstItem,
+    indexOfLastItem,
+  } = usePagination(waybillData);
+  const { columnWidths, handleMouseDown } =
+    useColumnResizing<WaybillsNavigationKeys>(columns);
 
   const [checkedWaybills, setCheckedWaybills] = useState<string[]>([]);
 
   const handleCheckboxChange = (id: string, isChecked: boolean) => {
-    setCheckedWaybills(prev => 
-      isChecked ? [...prev, id] : prev.filter(waybillId => waybillId !== id)
+    setCheckedWaybills((prev) =>
+      isChecked ? [...prev, id] : prev.filter((waybillId) => waybillId !== id)
     );
   };
 
   return (
     <section className={styles.waybill}>
-      <Header currentLang={currentLang} checkedWaybills={checkedWaybills} setCheckedWaybills={setCheckedWaybills} />
+      <Header
+        currentLang={currentLang}
+        checkedWaybills={checkedWaybills}
+        setCheckedWaybills={setCheckedWaybills}
+      />
 
       <div className={styles.heading}>
         <label className={styles.check}>
@@ -52,7 +69,7 @@ export default function Waybill() {
           <div
             key={column}
             className={`${styles[column]} ${styles.heading_title}`}
-            style={{ width: columnWidths[column] || "100px" }}
+            style={{ width: columnWidths[column] }}
           >
             <p className={styles.table_title}>
               {WaybillsNavigation[currentLang][column]}
