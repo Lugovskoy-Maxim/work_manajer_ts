@@ -1,12 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface User {
-  id: string; // Идентификатор 
-  first_name: string; // Имя
-  last_mane: string; // Фамилия
-  object: string; // Объект на котором 
-  email: string; // марка авто
-}
+import { User } from "@/types/user";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UsersState {
   users: User[];
@@ -21,7 +14,7 @@ const initialState: UsersState = {
 };
 
 const UsersSlice = createSlice({
-  name: 'Users',
+  name: "Users",
   initialState,
   reducers: {
     fetchUsersStart(state) {
@@ -40,10 +33,12 @@ const UsersSlice = createSlice({
       state.users.push(action.payload);
     },
     removeUser(state, action: PayloadAction<string>) {
-      state.users = state.users.filter(users => users.id !== action.payload);
+      state.users = state.users.filter((users) => users.id !== action.payload);
     },
     updateUser(state, action: PayloadAction<User>) {
-      const index = state.users.findIndex(users => users.id === action.payload.id);
+      const index = state.users.findIndex(
+        (users) => users.id === action.payload.id
+      );
       if (index !== -1) {
         state.users[index] = action.payload;
       }
@@ -51,6 +46,7 @@ const UsersSlice = createSlice({
   },
 });
 
-export const { fetchUsersStart, fetchUsersSuccess, fetchUsersFailure } = UsersSlice.actions;
+export const { fetchUsersStart, fetchUsersSuccess, fetchUsersFailure } =
+  UsersSlice.actions;
 
 export default UsersSlice.reducer;

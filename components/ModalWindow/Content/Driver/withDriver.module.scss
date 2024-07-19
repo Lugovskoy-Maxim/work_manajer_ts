@@ -1,0 +1,55 @@
+.modal_content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.modal_header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal_body {
+  margin-bottom: 20px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.modal_body p {
+  margin: 5px 0;
+}
+
+.modal_footer {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  gap: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    color: rgb(155, 155, 155);
+    font-size: small;
+  }
+}
+
+.last_waybills_list{
+  display: flex;
+  flex-direction: column;
+  list-style-type:decimal ;
+  padding-left: 20px;
+}
+
+.last_waybill{
+  margin-top: 5px;
+}

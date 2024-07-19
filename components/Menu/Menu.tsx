@@ -1,27 +1,14 @@
-"use client"
-import { Navigation } from "@/constants";
+import React from "react";
 import styles from "./menu.module.scss";
-import { useState } from "react";
 
-
-export default function Header() {
-  const [currentLang, setLang] = useState<'ru' | 'en'>('ru');
+const MainPage= () => {
 
 
   return (
-    <section className={styles.menu}>
-      <div className={styles.column}>
-        <ul className={styles.list}>
-          <li className={`${styles.item} ${styles.active}`}>{Navigation[currentLang].waybills}</li>
-          <li className={styles.item}>{Navigation[currentLang].summary}</li>
-          <li className={styles.item}>{Navigation[currentLang].vehicles}</li>
-          <li className={styles.item}>{Navigation[currentLang].drivers}</li>
-          <li className={styles.item}>{Navigation[currentLang].organizations}</li>
-          <li className={styles.item}>{Navigation[currentLang].address}</li>
-          <li className={styles.item}>{Navigation[currentLang].staff}</li>
-        </ul>
-      </div>
-      <div className={styles.user}>{Navigation[currentLang].profile}</div>
-    </section>
+    <div className={styles.mainPage}>
+
+    </div>
   );
-}
+};
+
+export default MainPage;

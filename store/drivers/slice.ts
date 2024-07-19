@@ -1,24 +1,7 @@
+import { Driver } from '@/types/driver';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Organization {
-  id: string; 
-  name: string;
-}
-
-interface Driver {
-  id: string; // Идентификатор
-  name: string; // Имя водителя
-  firstName: string; // Имя
-  lastName: string; // Фамилия
-  middleName: string; // Отчество
-  licenseNumber: string; // Номер водительского удостоверения
-  licenseDate: string; // Дата выдачи водительского удостоверения
-  organizations: Organization[]; // Организации, к которым принадлежит водитель
-  birthDay: string; // День рождения водителя
-  owner: string;
-}
-
-interface DriversState {
+type DriversState = {
   drivers: Driver[];
   isLoading: boolean;
   error: string | null;
