@@ -14,7 +14,7 @@ export default function SignIn() {
 
   return (
     <>
-      <div className={styles.signIn}>
+      <div className={styles.signin}>
         {/* <header className={styles.header}>
           <Link className={styles.promo} href={"/promo"}>
           <Image src={logo_min_icon} alt={""} width={40} height={40}></Image>
