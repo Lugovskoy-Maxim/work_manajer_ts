@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className={styles.header}>
+      <div></div>
       <Link className={styles.logo} href={"#"}>
         <Image src={logo_icon} alt={"ТС"} width={200} height={60} />
       </Link>
@@ -18,6 +19,7 @@ export default function Header() {
           className={styles.input}
         ></input>
       </form>
+      {/*  */}
       <div className={styles.buttons}>
         <button type="button" className={styles.information}>
         <Image
