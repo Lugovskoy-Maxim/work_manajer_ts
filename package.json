@@ -1,12 +1,15 @@
 {
-  "name": "work_manajer_ts",
-  "version": "0.1.0",
+  "name": "work_manager_ts",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
