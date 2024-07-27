@@ -1,0 +1,43 @@
+.opened {
+  display: flex;
+}
+
+.closed {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+
+.wrapper {
+  position: relative;
+  margin-top: 200px;
+  left: calc(100vw - (var(--modal-desktop-width / 2)));
+  width: var(--modal-desktop-width);
+  background-color: (var(--background-color));
+  height: max-content;
+  min-height: 500px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(70, 79, 96, 0.16), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  
+}
+
+.close_button {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: none;
+  background-color: transparent;
+}
+
+.close_icon {
+  cursor: pointer;
+}
