@@ -71,7 +71,7 @@ export default function Home() {
                 </p>
               </div>
             </Link>
-            <Link href={""}>
+            <Link href={"/waybills"}>
               <div className={styles.item}>
                 <h2>Путевые листы</h2>
                 <p>

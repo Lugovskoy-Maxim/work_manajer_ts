@@ -1,6 +1,6 @@
 "use client";
 import { Header, ModalWindow, Waybill } from "@/components";
-import styles from "../page.module.css";
+import styles from "./page.module.css";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import Link from "next/link";

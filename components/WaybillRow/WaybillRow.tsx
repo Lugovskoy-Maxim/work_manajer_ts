@@ -152,7 +152,7 @@ const WaybillRow: React.FC<WaybillRowProps> = ({
         style={{ width: columnWidths.name }}
         onClick={() => handleOpenModal(waybill.id, "waybill")}
       >
-        <p>{`Путевой лист ТСПЛ-${waybill.waybill_number}`}</p>
+        <p>{`Путевой лист - ${waybill.waybill_number}`}</p>
       </div>
 
       <div
