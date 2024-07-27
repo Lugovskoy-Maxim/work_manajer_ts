@@ -1,6 +1,7 @@
 .waybill {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: calc(100vh - 60px);
   justify-content: space-between;
   color: var(--foreground-rgb);
