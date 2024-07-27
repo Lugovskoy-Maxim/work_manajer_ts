@@ -1,8 +1,8 @@
 "use client";
 import { Footer } from "@/components";
 import styles from "./signup.module.scss";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import welcome_icon from "../../public/icons/welcome_men.svg";
